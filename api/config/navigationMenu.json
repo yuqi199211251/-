@@ -1,0 +1,36 @@
+[
+    {
+        "label": "换货管理",
+        "children": [
+            {
+             "label": "反馈报告",
+             "link":"#/complaintRequest"
+            },
+            {
+             "label": "上传图片",
+             "link":"#/uploadFeedbackPicture"
+            }
+        ],
+        "UserType":["销售代表"],
+        "UserRole":["businessLeader","businessDirector","superAdmin"]
+    },
+    {
+        "label": "销量报表",
+        "children": [
+            {
+                "label": "月度销量管理",
+                "link":"#/monthSaleReport"
+            },
+            {
+                "label": "年度销量查询表",
+                "link":"#/yearSaleReport"
+            },
+            {
+             "label": "月度销量版本差异对比查询表",
+             "link":"#/monthlySalesDifferencesComparison"
+            }
+        ],
+        "UserType":["销售代表","销售经理","不受限用户","销售助理","商务代表"],
+        "UserRole":["businessLeader","businessDirector","superAdmin"]
+    }
+]

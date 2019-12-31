@@ -1,0 +1,67 @@
+<div class="modal-header dialog-header-confirm">
+    <button type="button" class="close" ng-click="$dismiss()">
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+    <div class="modal-title">
+      <span class="fa fa-university"></span>
+      <span>添加</span>
+    </div>
+  </div>
+  <form class="form-horizontal" role="form" name="myForm" novalidate class="jm" ng-class="{submitted:submitted}">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-7 col-sm-offset-3 error ng-binding" ng-if='error'>
+            <i class="fa fa-minus-circle"></i> {{error.text}}
+          </div>
+          
+          <div class="form-group" ng-show="false">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="FItemID"> FItemID </label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-12 form-control'
+                                 name='FItemID'
+                                 ng-required="true"               
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted,'error':(!cust.FItemID)}"
+                                 ng-model="cust.FItemID"
+                                 value = "{cust.FItemID}"
+                                 placeholder="FItemID"
+                                 autocomplete="off">
+            </div>
+          </div>
+     
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="FName"> 仓库名称</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='FName'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.FName"
+                                 placeholder="仓库名称">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="clearboth"></div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="modal-footer text-center">
+      <button type="submit" class="btn btn-primary" ng-click="submit()" 
+      >
+        提交
+      </button>
+      <button type="button" class="btn btn-default" ng-click="reset()">
+        重置
+      </button>
+      <button type="button" class="btn btn-default" ng-click="$dismiss()">
+        取消
+      </button>
+    </div>
+  </form>
+  <pre ng-show="debug">{{complaintRequest|json}}</pre >
+  

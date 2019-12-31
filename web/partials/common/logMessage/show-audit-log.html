@@ -1,0 +1,67 @@
+<div class="modal-header dialog-header-confirm">
+  <button type="button" class="close" ng-click="$dismiss()">
+    <i class="fa fa-times fa-lg"></i>
+  </button>
+  <div class="modal-title">
+    <span class="fa fa-university"></span>
+    <span>换货流程审核日志</span>
+  </div>
+</div>
+<div class="margin-top-20" style="padding:30px 0 10px 0">
+  <table class="table padding-top table-striped border">
+      <thead> 
+          <tr>
+          <th class="text-center">
+              <a class="cursor-pointer" ng-click="sortType = 'FCheckerName'; sortReverse = !sortReverse">
+              操作人
+              <span ng-show="sortType == 'FCheckerName' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'FCheckerName' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+          <th class="text-center">
+              <a class="cursor-pointer" ng-click="sortType = 'FCheckDate'; sortReverse = !sortReverse">
+              操作时间
+              <span ng-show="sortType == 'FCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'FCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+          <th class="text-center">
+              <a class="cursor-pointer" ng-click="sortType = 'FPreCheckDate'; sortReverse = !sortReverse">
+              时间差
+              <span ng-show="sortType == 'FPreCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'FPreCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+          <th class="text-center">
+              <a class="cursor-pointer" ng-click="sortType = 'FCheckIdea'; sortReverse = !sortReverse">
+              意见
+              <span ng-show="sortType == 'FCheckIdea' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'FCheckIdea' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+          <th class="text-center">
+              <a class="cursor-pointer" ng-click="sortType = 'FDESCRIPTIONS'; sortReverse = !sortReverse">
+              备注
+              <span ng-show="sortType == 'FDESCRIPTIONS' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'FDESCRIPTIONS' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+          </tr>
+      </thead> 
+      <tbody>          
+          <tr ng-if="auditLogList&&auditLogList.length>0" 
+              ng-repeat="(idx,auditLog) in auditLogList | orderBy:sortType:sortReverse">
+          <td width="5%" class="text-center">{{auditLog.FCheckerName}}</td>
+          <td width="4%" class="text-center">{{auditLog.FCheckDate|date:'yyyy-MM-dd'}}</td>
+          <td width="5%" class="text-center">{{auditLog.FPreCheckDate}}</td>
+          <td width="10%" class="text-center">{{auditLog.FCheckIdea}}</td>
+          <td width="8%" class="text-center">{{auditLog.FDESCRIPTIONS}}</td>
+      </tr>
+      <tr ng-if="!auditLogList||auditLogList.length==0">
+          <td colspan="4" class='empty-message'>没有数据.</td>
+      </tr>
+      </tbody> 
+  </table>
+</div>
+
+  <pre ng-show="debug">responsibleList ：{{responsibleList|json}}</pre >

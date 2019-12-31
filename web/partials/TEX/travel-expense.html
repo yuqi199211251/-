@@ -1,0 +1,976 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅报销</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row" style="float: right;">
+                    <div class="col-md-3">
+                        <a href="#/travelRequest"><img src="./picture/jwmsTRE.png"></a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/travelExpense"><img src="./picture/jwmsTEX.png"></a>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./picture/jwmsBRE.png">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./picture/jwmsBEX.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- begin -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅报销抬头<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
+            </div>
+            <input type="text" ng-model="travelRequestID" style="display: none;">
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">申请号</label>
+                    <div class="col-sm-5"><input type="text" class="form-control" ng-model="requestNum"></div>
+                    <label class="col-sm-1 control-label">差旅申请号<span style="color: red">*</span></label>
+                    <div class=" col-sm-5 form-inline">
+                        <input readonly="readonly" type="text" value="" class="form-control" ng-model="traReqNo"
+                            style="width:90%">
+                        <span ng-if="!markSave"> <button data-target="#texRequestNoSelect" data-toggle="modal"
+                                type="button" class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">版本号</label>
+                    <div class="col-sm-11">1</div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">提交人</label>
+                    <div class="col-sm-5"><input type="text" ng-model="submitPer" class="form-control" readonly></div>
+                    <label class="col-sm-1 control-label">创建日期</label>
+                    <div class="col-sm-5"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                            placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                            ng-model="requestdate" is-open="openedAddDate" ng-readonly="true" ng-required="true"
+                            close-text="关闭" ng-click="openedAddDate=true" clear-text="清除" current-text='本日' readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">申请人<span style="color: red">*</span></label>
+                    <div class=" col-sm-5">
+                        <input type="text" value="" class="form-control" ng-model="applyPeople" readonly>
+                    </div>
+                    <label class="col-sm-1 control-label">币别</label>
+                    <div class="col-sm-5 form-inline"><input readonly="readonly" type="text" value=""
+                            class="form-control" style="width:90%" ng-model="currency">
+                        <span ng-if="!markSave"> <button data-target="#currency" data-toggle="modal" type="button"
+                                class="btn btn-primary" ">
+                                <i class=" fa fa-search"></i>
+                            </button>
+                        </span></div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">公司/部门<span style="color: red">*</span></label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" style="width: 30%!important;float: left;"
+                            value="6200-吉威医疗制品" readonly>
+                        <input class="form-control input-lg"
+                            style="height: 34px;padding:0;width: 70%!important;float: left;" id="departmentId"
+                            ng-model="departmentcode" readonly>
+                    </div>
+                    <label class="col-sm-1 control-label">项目号</label>
+                    <div class="col-sm-5"><input readonly type="text" value="" class="form-control"
+                            ng-model="projectcode">
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">成本中心<span style="color: red">*</span></label>
+                    <div class="col-sm-5"><input readonly type="text" value="" class="form-control"
+                            ng-model="costcenter">
+                    </div>
+                    <label class="col-sm-1 control-label">申请金额</label>
+                    <div class="col-sm-5"><input readonly type="text" value="" class="form-control"
+                            ng-model="estcosttotal"></div>
+                </div>
+            </div>
+
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">备注<span style="color: red">*</span></label>
+                    <div class="col-sm-11"><textarea class="form-control" ng-model="travelExpenseMark"></textarea></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- middle -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅报销明细<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button class="btn btn-primary btn-3d" data-target="#detailtitle" data-toggle="modal"
+                        ng-if="!markSave"><i class="fa fa-plus"></i> 新增</button>
+                    <!-- <button class="btn btn-danger btn-3d" ng-click="removeDetailTitleCheckBox()"><i
+                            class="fa fa-trash-o"></i> 删除</button> -->
+                    <button class="btn btn-info btn-3d" ng-click="flushDetailTitleCheckBox()" ng-if="!markSave"><i
+                            class="glyphicon glyphicon-repeat"></i> 刷新</button>
+                    <!-- <div style="float: right;;margin-left: 1%;">
+                        <button class="btn btn-success btn-3d"><i class="fa fa-search"></i> 查询</button>
+                    </div>
+
+                    <div style="float: right;">
+                        <input type="text" class="form-control" style="margin-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">All fields</option>
+                            <option value="">出发地</option>
+                            <option value="">目的地</option>
+                            <option value="">飞机票</option>
+                            <option value="">机场往返</option>
+                            <option value="">住宿</option>
+                            <option value="">火车/汽车/轮船</option>
+                            <option value="">出差餐补</option>
+                            <option value="">出差地市内交通</option>
+                            <option value="">其他</option>
+                            <option value="">小计</option>
+                            <option value="">备注</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Quick Search:</p>
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">Default</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Selected Filter:</p>
+                    </div> -->
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>地点</th>
+                            <th>开始日期</th>
+                            <th>截止日期</th>
+                            <th>费用类型</th>
+                            <th>发票类型</th>
+                            <th>发票金额</th>
+                            <th>币别</th>
+                            <th>税率</th>
+                            <th>报销金额</th>
+                            <th>报销金额(CNY)</th>
+                            <th>汇率</th>
+                            <th>发票金额(CNY)</th>
+                            <th>发票张数</th>
+                            <th>是否电子发票</th>
+                            <th>电子发票(分号分割)</th>
+                            <th>项目号</th>
+                            <th>备注</th>
+                            <th>差额</th>
+                            <th ng-if="!markSave">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="!detailList||detailList.length==0">
+                            <td colspan="13">暂无数据</td>
+                        </tr>
+                        <tr ng-if="detailList&&detailList.length>0&&detailList!=undefined"
+                            ng-repeat="(idx,detailL) in detailList | orderBy:sortType:sortReverse">
+                            <td style="display: none;"><input type="checkbox" id="{{idx}}" value="{{idx}}"
+                                    name="detailCheckBox"></td>
+                            <td style="display: none;">{{detailL.id}}</td>
+                            <td>{{detailL.hanghao}}</td>
+                            <td>{{detailL.didian}}</td>
+                            <td>{{detailL.beginDate}}</td>
+                            <td>{{detailL.endDate}}</td>
+                            <td>{{detailL.expenseTypeInput}}</td>
+                            <td>{{detailL.fapiaoStyle}}</td>
+                            <td>{{detailL.fapiaojine}}</td>
+                            <td>{{detailL.currencyTypeDetail}}</td>
+                            <td>{{detailL.cnTaxInput}}</td>
+                            <td>{{detailL.baoxiaojine}}</td>
+                            <td>{{detailL.baoxiaojineCNY}}</td>
+                            <td>{{detailL.huilv}}</td>
+                            <td>{{detailL.fapiaojineCNY}}</td>
+                            <td>{{detailL.fapiaoPaper}}</td>
+                            <td>{{detailL.isNotDianzifapiao}}</td>
+                            <td>{{detailL.dianzifapiaohao}}</td>
+                            <td>{{detailL.xiangmuhao}}</td>
+                            <td>{{detailL.beizhuDetail}}</td>
+                            <td>0.00</td>
+                            <td ng-if="!markSave"><button class="btn btn-primary btn-3d"
+                                    ng-click="updateDetailTitle(detailL,idx)"><i class="fa fa-file-text-o"></i>
+                                    修改</button>
+                                <button class="btn btn-danger btn-3d" ng-click="removeDetailTitleCheckBox(idx)"><i
+                                        class="fa fa-trash-o"></i> 删除</button></td>
+                        </tr>
+                        <tr id="detailDataTotal" ng-if="detailList&&detailList.length>0&&detailList!=undefined">
+                            <td colspan="4"></td>
+                            <td>总计:</td>
+                            <td></td>
+                            <td>￥{{fpjeTotal}}</td>
+                            <td></td>
+                            <td></td>
+                            <td>￥{{bxjeTotal}}</td>
+                            <td>￥{{bxjeCNYTotal}}</td>
+                            <td></td>
+                            <td>￥{{fpjeCNYTotal}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr id="detailDataType" ng-if="detailList&&detailList.length>0&&detailList!=undefined">
+                            <td colspan="4"></td>
+                            <td>分类小计(RMB):</td>
+                            <td>火车/汽车/轮船</td>
+                            <td></td>
+                            <td>机场往返</td>
+                            <td></td>
+                            <td>飞机票</td>
+                            <td></td>
+                            <td>餐补</td>
+                            <td></td>
+                            <td>市内交通</td>
+                            <td></td>
+                            <td>其他</td>
+                            <td></td>
+                            <td>住宿</td>
+                            <td></td>
+                        </tr>
+                        <tr id="detailDataTypeData" ng-if="detailList&&detailList.length>0&&detailList!=undefined">
+                            <td colspan="4"></td>
+                            <td></td>
+                            <td>￥{{hql}}</td>
+                            <td></td>
+                            <td>￥{{jcwf}}</td>
+                            <td></td>
+                            <td>￥{{fjp}}</td>
+                            <td></td>
+                            <td>￥{{cb}}</td>
+                            <td></td>
+                            <td>￥{{snjt}}</td>
+                            <td></td>
+                            <td>￥{{qt}}</td>
+                            <td></td>
+                            <td>￥{{zs}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅报销附件<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button class="btn btn-primary btn-3d" ng-click="addFileModal()" ng-if="!markSave"><i
+                            class="fa fa-plus"></i>
+                        新增</button>
+                    <!-- <button class="btn btn-danger btn-3d"><i class="fa fa-trash-o"></i> 删除</button> -->
+                    <button class="btn btn-info btn-3d" ng-if="!markSave"><i class="glyphicon glyphicon-repeat"></i>
+                        刷新</button>
+                    <!-- <div style="float: right;;margin-left: 1%;">
+                        <button class="btn btn-success btn-3d"><i class="fa fa-search"></i> 查询</button>
+                    </div>
+
+                    <div style="float: right;">
+                        <input type="text" class="form-control" style="margin-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">All fields</option>
+                            <option value="">选择待上传文件</option>
+                            <option value="">文件描述</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Quick Search:</p>
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">Default</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Selected Filter:</p>
+                    </div> -->
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>选择待上传文件</th>
+                            <th>文件描述</th>
+                            <th ng-if="!markSave">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="fileData" ng-if="!fileList||fileList.length==0">
+                            <td colspan="13">暂无数据</td>
+
+                        </tr>
+                        <tr ng-if="fileList&&fileList.length>0&&fileList!=undefined"
+                            ng-repeat="(idx,fileL) in fileList | orderBy:sortType:sortReverse">
+
+                            <td style="display: none;"><input type="checkbox" id="{{idx}}" value="{{idx}}"
+                                    name="fileCheckBox"></td>
+                            <td style="display: none;">{{fileL.id}}</td>
+                            <td style="display: none;">{{fileL.fileurl}}</td>
+                            <td style="display: none;">{{fileL.fileName}}</td>
+                            <td>
+                                <div style="position: relative;">
+                                    <!-- <img src="./picture/upload.png"> -->
+                                    <input type="file" id="fileUpload{{idx}}" style="float: left;"
+                                        ng-if="!markSave" /><span ng-if="fileL.fileName">原文件名称：<a
+                                            href="./jmapi/common/public/downLoadFile.json?fileName={{fileL.fileName}}&&fileurl={{fileL.fileurl}}">{{fileL.fileName}}</a></span>
+                                    <br />
+                                </div>
+                            </td>
+                            <td><input class="form-control" style="padding: 0 12px!important;" id="description{{idx}}"
+                                    value="{{fileL.Description}}">
+
+                            </td>
+                            <td ng-if="!markSave"><button class="btn btn-danger btn-3d" ng-click="removeFile(idx)"><i
+                                        class="fa fa-trash-o"></i> 删除</button></td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" style="float:left;">
+    <!-- <button type="button" class="btn btn-primary" ng-click="back()">
+        返回
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="submit()">
+        提交
+    </button> -->
+    <button type="button" class="btn btn-primary" ng-click="saveAllTravelRequest(updateProcessID)" ng-if="!markSave"
+        ng-disabled="!travelExpenseMark">
+        保存
+    </button>
+    <button type="button" ng-click="cancel()" class="btn btn-default" data-dismiss="modal" ng-if="!markSave">取消
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="backAllTravelRequest()" ng-if="markSave">
+        返回
+    </button>
+
+</div>
+<!-- 差旅申请号 -->
+<div class="modal fade" id="texRequestNoSelect" name="applyPeopleModal" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    差旅申请号
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="height:50px!important;">
+                        <div style="float: right;;margin-left: 1%;margin-top: -0.6%;">
+                            <button class="btn btn-success btn-3d" ng-click="selectTraReqNoList()"><i
+                                    class="fa fa-search"></i> 查询</button>
+                        </div>
+
+                        <div style="float: right;margin-top: -0.6%;">
+                            <input type="text" class="form-control" style="margin-left: 5%;" id="selectInput">
+                        </div>
+                        <div style="float: right;margin-top: -0.6%;">
+                            <select class="form-control input-lg" style="height: 34px;padding:0;" id="selectCond">
+                                <option value="all">全部</option>
+                                <option value="folio">申请号</option>
+                                <option value="creator">申请人</option>
+                                <option value="travelstartdate">开始日期</option>
+                                <option value="travelenddate">结束日期</option>
+                                <option value="travelpurpose">目的</option>
+                                <option value="internalremarks">备注</option>
+                            </select>
+                        </div>
+                        <div style="float: right;margin-top: -0.6%;">
+                            <p style="padding: 10px 9px;">快速查询:</p>
+                        </div>
+                        <div style="float: right;margin-top: -0.6%;">
+                            <select class="form-control input-lg" style="height: 34px;padding:0;">
+                                <option value="">默认</option>
+                            </select>
+                        </div>
+                        <div style="float: right;margin-top: -0.6%;">
+                            <p style="padding: 10px 9px;">筛选器:</p>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>申请号</th>
+                                    <th>申请人</th>
+                                    <th>开始日期</th>
+                                    <th>截止日期</th>
+                                    <th>目的</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="traReqNoListByPage&&traReqNoListByPage.length>0"
+                                    ng-repeat="(idx,traReqNoList) in traReqNoListByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{traReqNoList.folio}}" name="applyPeopleSlec">
+                                        <!-- 提交人、申请人 -->
+                                        <input type="text" value="{{traReqNoList.creator}}" style="display: none;">
+                                        <!-- 创建时间 -->
+                                        <input type="text" value="{{traReqNoList.requestdate}}" style="display: none;">
+                                        <!-- 部门 -->
+                                        <input type="text" value="{{traReqNoList.departmentcode}}"
+                                            style="display: none;">
+                                        <!-- 项目号 -->
+                                        <input type="text" value="{{traReqNoList.projectcode}}" style="display: none;">
+                                        <!-- 成本中心 -->
+                                        <input type="text" value="{{traReqNoList.costcenter}}" style="display: none;">
+                                        <!-- 申请金额 -->
+                                        <input type="text" value="{{traReqNoList.estcosttotal}}" style="display: none;">
+                                        <!-- cnprocess表ID -->
+                                        <input type="text" value="{{traReqNoList.ID}}" style="display: none;">
+                                    </td>
+                                    <td>{{traReqNoList.folio}}</td>
+                                    <td>{{traReqNoList.creator}}</td>
+                                    <td>{{traReqNoList.travelstartdate}}</td>
+                                    <td>{{traReqNoList.travelenddate}}</td>
+                                    <td>{{traReqNoList.travelpurpose}}</td>
+                                    <td>{{traReqNoList.internalremarks}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectApplyPeople()">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- currency币种 -->
+<div class="modal fade" id="currency" name="currency" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Search
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="bibie">
+                        <span> <button ng-click="selectCurrencyList()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>币别</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="currencyListByPage&&currencyListByPage.length>0"
+                                    ng-repeat="(idx,currencyList) in currencyListByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{currencyList.currency}}" name="currencySlec">
+                                    </td>
+                                    <td>{{currencyList.currency}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectBibie()">
+                    OK
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+
+<!-- Detail Title -->
+<div class="modal fade" id="detailtitle" name="detailtitleModal" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 4px;">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    差旅报销明细
+                </h4>
+            </div>
+            <form id="emptyForm">
+                <input type="text" ng-model="idStr" id="idstr" style="display: none;">
+                <input type="text" ng-model="tableId" id="tableId" style="display: none;">
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">行号</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" ng-model="hanghao"></div>
+                        <label class="col-sm-2 control-label">地点<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" ng-model="didian"></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">开始日期<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                                ng-model="beginDate" is-open="openedBeginDetail" ng-readonly="true" ng-required="true"
+                                close-text="关闭" ng-click="openedBeginDetail=true" clear-text="清除" current-text='本日' />
+                        </div>
+                        <label class="col-sm-2 control-label">截止日期<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                                ng-model="endDate" is-open="openedEndDetail" ng-readonly="true" ng-required="true"
+                                close-text="关闭" ng-click="openedEndDetail=true" clear-text="清除" current-text='本日' />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">费用类型<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="expenseTypeInput" id="expenseTypeInput">
+                            <span> <button data-target="#expenseType" data-toggle="modal" type="button"
+                                    class="btn btn-primary" style="margin-left: 87%;margin-top: -18%;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <label class="col-sm-2 control-label">发票类型</label>
+                        <div class="col-sm-4"><select
+                                class="form-control input-lg ng-pristine ng-valid ng-empty ng-touched"
+                                style="height: 34px; padding: 0px;" id="fapiaoStyle" ng-model="fapiaoStyle">
+                                <option value="普通发票">普通发票</option>
+                                <option value="专用发票">专用发票</option>
+                            </select></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">税率</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="cnTaxInput" id="cnTaxInput">
+                            <span> <button data-target="#cnTax" data-toggle="modal" type="button"
+                                    class="btn btn-primary" style="margin-left: 87%;margin-top: -18%;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <label class="col-sm-2 control-label">币别<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="currencyTypeDetail" id="currencyTypeDetail">
+                            <span> <button data-target="#currencyDetail" data-toggle="modal" type="button"
+                                    class="btn btn-primary" style="margin-left: 87%;margin-top: -18%;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">发票金额<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="fapiaojine" id="fapiaojine"
+                                onBlur="rightInputClick('fapiaojine','fapiaojineCNY')"></div>
+                        <label class="col-sm-2 control-label">发票金额(CNY)</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="fapiaojineCNY" id="fapiaojineCNY" onBlur="sumDetailTitle()"></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">报销金额<span style="color: red">*</span></label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="baoxiaojine" id="baoxiaojine"
+                                onBlur="rightInputClick('baoxiaojine','baoxiaojineCNY')"></div>
+                        <label class="col-sm-2 control-label">报销金额(CNY)</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="baoxiaojineCNY" id="baoxiaojineCNY" readonly></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">发票张数</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="fapiaoPaper" id="fapiaoPaper" onBlur="sumDetailTitle()"></div>
+                        <label class="col-sm-2 control-label">汇率</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11" ng-model="huilv"
+                                id="huilv" readonly></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">是否电子发票<span style="color: red">*</span></label>
+                        <div class="col-sm-4">
+                            <label for="genderM" class="radio-inline">
+                                <input type="radio" name="userGender" id="genderN" value="1"
+                                    onblur="isNotDisabled('no','dianzifapiaohao')" checked>是
+                            </label>
+                            <label for="genderF" class="radio-inline">
+                                <input type="radio" name="userGender" id="genderY" value="0"
+                                    onblur="isNotDisabled('yes','dianzifapiaohao')">否
+                            </label>
+                            <span style="color: blue;margin-left: 2%;">发票为8位, 只能输入一个发票号</span>
+                        </div>
+                        <label class="col-sm-2 control-label">项目号</label>
+                        <div class="col-sm-4"><input type="text" class="form-control" maxlength="11"
+                                ng-model="xiangmuhao" id="xiangmuhao" readonly>
+                            <span> <button data-target="#projectNumDetail" data-toggle="modal" type="button"
+                                    class="btn btn-primary" style="margin-left: 87%;margin-top: -18%;">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span></div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">电子发票号</label>
+                        <div class="col-sm-10"><input class="form-control" id="dianzifapiaohao"
+                                ng-model="dianzifapiaohao" maxlength="8"
+                                onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^19]/g,'')}else{this.value=this.value.replace(/\D/g,'')}"
+                                onafterpaste="if(this.value.length==1){this.value=this.value.replace(/[^1-19]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body" style="padding: 2px;">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">备注<span style="color: red">*</span></label>
+                        <div class="col-sm-10"><textarea class="form-control" id="beizhuDetail"
+                                ng-model="beizhuDetail"></textarea></div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer" style="padding: 5px;">
+
+                <button type="button" class="btn btn-primary" ng-click="saveDetailTitle()"
+                    ng-disabled="!didian||!beginDate||!endDate||!expenseTypeInput||!currencyTypeDetail||!fapiaojine||!baoxiaojine||!beizhuDetail">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 费用类型 -->
+<div class="modal fade" id="expenseType" name="expenseType" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    费用类型
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="expenseTypeData">
+                        <span> <button ng-click="selectExpenseTypeList()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body" style="padding: 2px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>费用类型</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="expenseTypeListByPage&&expenseTypeListByPage.length>0"
+                                    ng-repeat="(idx,expenseTypeList) in expenseTypeListByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{expenseTypeList.expenseType}}"
+                                            name="expenseTypeSlec">
+                                    </td>
+                                    <td>{{expenseTypeList.expenseType}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectexpenseTypeData()">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- 税率 -->
+<div class="modal fade" id="cnTax" name="cnTax" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    税率
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="expenseTypeDataInput">
+                        <span> <button ng-click="selectCnTaxTypeList()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body" style="padding: 2px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>税率</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="cnTaxListByPage&&cnTaxListByPage.length>0"
+                                    ng-repeat="(idx,cnTaxList) in cnTaxListByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{cnTaxList.cnTax}}" name="cnTaxSlec">
+                                    </td>
+                                    <td>{{cnTaxList.cnTax}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectCnTaxData()">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+
+<!-- currency币别 详细信息里面的币别查询 -->
+<div class="modal fade" id="currencyDetail" name="currencyDetail" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    币别
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="bibieDetail">
+                        <span> <button ng-click="selectCurrencyDetailList()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body" style="padding: 2px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>币别</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="currencyDetailListByPage&&currencyDetailListByPage.length>0"
+                                    ng-repeat="(idx,currencyDetailList) in currencyDetailListByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{currencyDetailList.currency}}"
+                                            name="currencyDetailSlec">
+                                    </td>
+                                    <td>{{currencyDetailList.currency}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectBibieDetail()">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 项目号 -->
+<div class="modal fade" id="projectNumDetail" name="projectNumDetail" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    项目号
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="proNum">
+                        <span> <button ng-click="chooseProjectNum()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body" style="padding: 2px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>项目号</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="projectNumByPage&&projectNumByPage.length>0"
+                                    ng-repeat="(idx,proNum) in projectNumByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{proNum.projectNum}}" name="projectNumSlec"></td>
+                                    <td>{{proNum.projectNum}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChangedProNum()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectProjectNum()">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

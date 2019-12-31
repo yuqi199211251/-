@@ -1,0 +1,211 @@
+<div id="myDiv">
+
+    <img ng-if="implantFeedback.fdzzsUrl" id="imgStyle" width="100px" height="100px" style="margin-top: 10%;margin-left:54%;position:absolute;z-index:1;" src="data:image/gif;base64,{{implantFeedback.fdzzsUrl}}" width="150mm" height="150mm">
+    <div class="margin-top-5" style="text-align:center;position:relative;z-index:0;">
+        <table class="table table-condensed">
+            <thead>
+                    <tr>
+                        <th  style="text-align: left;padding-top:20px;width: 20%"><label>JWMS</label></th>
+                        <th  style="text-align: center;width: 60%"><label class="text-center" style="font-size: 20px">山东吉威医疗制品有限公司</label></th>
+                        <th  style="text-align: right;padding-top:20px;width: 20%"><label>FSOP-051-01-C</label></th>
+                    </tr>
+            </thead>
+        </table>
+        <table class="table table-condensed" style="margin-bottom: 2px">
+            <thead>
+                    <tr>
+                        <th  style="text-align: left;padding-top:20px;width: 20%;border: 0px"><label>1.反馈基本信息(以下由申请人填写)：</label></th>
+                        <th  style="text-align: center;width: 60%;border: 0px"><label class="text-center" style="font-size: 20px">植入/介入产品反馈表</label></th>
+                        <th  style="text-align: right;padding-top:20px;width: 20%;border: 0px"><label>编号：</label><label>{{implantFeedback.feedbackNumber}}</label></th>
+                    </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-condensed">
+            <tr class="non-border" style="border: 0px">
+                <td class="non-border weightFont" colspan="4" style="text-align: left;border: 0px">反馈摘要：</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td class="non-border" colspan="4" style="text-align: left;border: 0px"><input type="checkbox" ng-model="implantFeedback.embeddedSecurity">植入保障（单纯未通过病变，资料齐全）</td>
+            </tr>
+            <tr style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">质量调查：</label> <input type="checkbox" ng-model="implantFeedback.stentsFallOff">支架脱落 <input type="checkbox" ng-model="implantFeedback.cardGodet">卡导丝 <input type="checkbox" ng-model="implantFeedback.unpackFindProblem">拆包即发现问题 <input type="checkbox" ng-model="implantFeedback.otherQuality">其他 
+                    <input type='text'  name='otherQualityProblems'
+                                    ng-class="{'submitted':submitted}"
+                                    ng-model="implantFeedback.otherQualityProblems" style="border-left: none;border-right:none;border-top:none;width:20%">
+                </td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" class="non-border weightFont" style="text-align: left;width: 50%;border-bottom: hidden">院方信息</td>
+                <td colspan="2" class="non-border weightFont" style="text-align: left;width: 50%;border-bottom: hidden">分销商信息</td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">医院名称：</label><label class="normalFont">{{implantFeedback.hospitalName}}</label></td>
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">分销商名称：</label><label class="normalFont">{{implantFeedback.distributorName}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">手术医生：</label><labelclass="normalFont">{{implantFeedback.surgeon}}</label></td>
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">分销商所属平台：</label><label class="normalFont">{{implantFeedback.FFXSPlaName}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">从业经验：</label><label class="normalFont">{{implantFeedback.workingExperience}}</label></td>
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">联系电话：</label><label class="normalFont">{{implantFeedback.distributorPhone}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">联系电话：</label><label class="normalFont">{{implantFeedback.doctorPhone}}</label></td>
+                <td colspan="2" class="non-border" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">邮箱：</label><label class="normalFont">{{implantFeedback.email}}</label></td>
+            </tr>
+            <tr>
+                <td colspan="2"  style="text-align: left;width: 50%"><label class="normalFont">手术日期：</label><label class="normalFont">{{implantFeedback.surgeryDate}}</label></td>
+                <td colspan="2"  style="text-align: left;width: 50%"><label class="normalFont">业务员：</label><label class="normalFont">{{implantFeedback.salesman}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden" class="weightFont">病人基本信息</td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden" class="weightFont">综合信息</td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">性别：</label><label class="normalFont">{{implantFeedback.PatientSex}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">是否进入身体：</label><label class="normalFont">{{implantFeedback.isIntoBody}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">年龄：</label><label class="normalFont">{{implantFeedback.PatientAge}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">何时出现问题：</label><label class="normalFont">{{implantFeedback.problemTime}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">病情诊断：</label><label class="normalFont">{{implantFeedback.diagnosis}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">植入前是否对产品施加任何正压或者负压：</label><label class="normalFont">{{implantFeedback.isPressure}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%"><label class="normalFont">病变部位：</label><label class="normalFont">{{implantFeedback.diseasedRegion}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">如果是，请具体说明（如：加压方式、所用器械、压力等）：</label>
+                    <input type='text'  name='diseasedRegionDetails'
+                    ng-class="{'submitted':submitted}"
+                    ng-model="implantFeedback.diseasedRegionDetails" style="border-left: none;border-right:none;border-top:none;width:30%">
+                </td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden" class="weightFont">产品信息</td>
+                <td class="non-border" colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">是否预扩张？</label><label class="normalFont">{{implantFeedback.isPreExpansion}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">产品名称：</label><label class="normalFont">{{implantFeedback.productName}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">是否在额定压力内？</label><label class="normalFont">{{implantFeedback.isRatedPressure}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">产品规格：</label><label class="normalFont">{{implantFeedback.productModel}}</label></td>
+                
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">是否钙化？</label><label class="normalFont">{{implantFeedback.isCalcification}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">生产批号：</label><label class="normalFont">{{implantFeedback.batchNumber}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">是否为弯曲的解剖结构？</label><label class="normalFont">{{implantFeedback.isCurved}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">有效期至：</label><label class="normalFont">{{implantFeedback.expiryDate}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">出现问题后是否重新消毒？</label><label class="normalFont">{{implantFeedback.isToDisinfect}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">产品序号：</label><label class="normalFont">{{implantFeedback.productNumber}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">使用的指引导管品牌及规格：</label><label class="normalFont">{{implantFeedback.gtbasotc}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">顾客是否需要反馈产品分析报告？</label><label class="normalFont">{{implantFeedback.isTechnologyAssessment}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">使用的导线品牌及规格：</label><label class="normalFont">{{implantFeedback.basogw}}</label></td>
+            </tr>
+            <tr class="non-border">
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">收回配件：</label><input type="checkbox" ng-model="implantFeedback.packaging">包装 <input type="checkbox" ng-model="implantFeedback.balloonCatheter">输送系统（球囊导管） <input type="checkbox" ng-model="implantFeedback.SupportHead">支架头 <input type="checkbox" ng-model="implantFeedback.leadWire">指引导丝 
+                    <input type="checkbox" ng-model="implantFeedback.OtherEvaluationContents">其他 
+                    <input type='text'  name='OtherEvaluationContentsDetails'
+                                    ng-class="{'submitted':submitted}"
+                                    ng-model="implantFeedback.OtherEvaluationContentsDetails"></td>
+                <td colspan="2" style="text-align: left;width: 50%;border-bottom: hidden"><label class="normalFont">使用的球囊导管品牌及规格：</label><label class="normalFont">{{implantFeedback.brandSpecificationBalloonCatheter}}</label></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left;width: 50%"><label class="normalFont">补充信息：</label><label class="normalFont">{{implantFeedback.isCd}}</label></td>
+                <td colspan="2" style="text-align: left;width: 50%"><label class="normalFont">未通过病变的，是如何处理的？</label><input type='text'  name='dealAbsentLesion'
+                    ng-class="{'submitted':submitted}"
+                    ng-model="implantFeedback.dealAbsentLesion" style="border-left: none;border-right:none;border-top:none;width:30%"></td>
+            </tr>
+
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px" class="weightFont">事件描述</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">临床结果：</label><label class="normalFont">{{implantFeedback.clinicalOutcome}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">病人伤害：</label><label class="normalFont">{{implantFeedback.patientInjury}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">病人并发症：</label><label class="normalFont">{{implantFeedback.patientComplication}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">外科手术：</label><label class="normalFont">{{implantFeedback.selectedSite}}</label></td>
+            </tr>
+            <tr style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">事件描述：</label><label class="normalFont">{{implantFeedback.incidentDescription}}</label></td>
+            </tr>
+        </table>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th  style="text-align: left;width: 20%;border: 0px"><label>2.资料初审(以下由申请人填写)：</label></th>
+                </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-condensed">
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px" class="weightFont">分销商</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">申请人（签名及电话）：</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">初审说明：</label></td>
+            </tr>
+            <tr style="border: 0px">
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">报告日期：</label></td>
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">邮寄日期：</label></td>
+            </tr>
+        </table>
+        <table class="table table-condensed">
+            <thead>
+                    <tr>
+                        <th  style="text-align: left;width: 20%;border: 0px"><label>3.资料审核(以下由客户服务部和QA填写)：</label></th>
+                    </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-condensed">
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px" class="weightFont">客服部</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">审核人签字：</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">收到日期：</label></td>
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">审核日期：</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">复查结果：</label></td>
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">转交日期：</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px" class="weightFont">质量体系管理部</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">审核人签字：</label></td>
+            </tr>
+            <tr style="border: 0px">
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">质量调查：</label></td>
+                <td colspan="2" style="text-align: left;border: 0px"><label class="normalFont">日期：</label></td>
+            </tr>
+        </table>
+        <table class="table table-bordered table-condensed" style="border:0px #000 solid!important;">
+            <tr style="border:0px #000 solid!important;"><td style="float:right;border:0px #000 solid!important;border-bottom: 1px #000 solid!important;">质量管理体系记录</td></tr>
+        </table>
+        <button type="button" class="btn btn-success" id="returnButton"ng-click="print()" >打印</button>
+        <button type="button" class="btn btn-success" id="returnButton"ng-click="return()" >返回</button>
+    </div>
+</div>
+
+    

@@ -1,0 +1,632 @@
+
+<div  style="padding:0 0 10px 0">
+<h2 class="text-center" style="padding-top:20px">换货信息新增</h2>
+<div class="margin-top-5" style="padding:10px 0 10px 0">
+    <div class="container">
+        <div class="pull-right margin-right-300" style="padding-bottom: 10px">
+                <button type="button" class="btn btn-info" ng-click="copyImplantFeedback()" >复制</button>
+                <button type="button" class="btn btn-info" ng-click="printImplantFeedback(complaintRequest)" >打印植入反馈</button>
+                <button type="button" class="btn btn-info" ng-click="printReplacementRequest(complaintRequest)" >打印换货申请</button>
+                
+        </div>
+    </div>
+
+        <div class="margin-top-5" style="text-align:center">
+         <form role="form" name="toNoForm">
+          <table class="table table-bordered">
+            <tr>
+              <td colspan="10" style="text-align: left;"><label >反馈摘要：</label></td>
+              <td colspan="6" style="text-align: left" class="col-sm-6">
+                  <label class="col-sm-2 control-label field-required" style="text-align: right" for="role"> 产品类别:</label>
+                  <div class="col-sm-3">
+                      <select class="chosen-select col-sm-3 form-control"
+                          ng-model="complaintRequest.ProductTypeId"
+                          name="ProductTypeId"
+                          ng-options="item.FInterID as item.FName for item in productTypeList"
+                          >
+                          <option value="">选择产品类别</option>
+                      </select>
+                  </div>
+                  <input type="hidden" ng-model="complaintRequest.fid">
+                  <input type="hidden" ng-model="complaintRequest.hospitalId">
+                  <input type="hidden" ng-model="complaintRequest.distributorId">
+                  <input type="hidden" ng-model="complaintRequest.FFXSPlaId">
+
+                  <label class="control-label col-sm-2 field-required" style="text-align: right" for="feedbackNumber"> 反馈编号:</label> 
+                  <div class="col-sm-3">
+                      <input type='text' class='col-sm-3 form-control'
+                      name='feedbackNumber'
+                      disabled
+                      class='full-width form-control'
+                      ng-class="{'submitted':submitted}"
+                      ng-model="complaintRequest.feedbackNumber">
+                  </div>
+              </td>
+            </tr>
+            
+
+            <tr>
+              <td colspan="10" style="text-align: left"><input type="checkbox" ng-model="complaintRequest.embeddedSecurity">植入保障（单纯未通过病变，资料齐全）</td>
+              <td colspan="6" style="text-align: left" class="col-sm-6">
+                <label class="control-label col-sm-2 field-required" style="text-align: right" for="documentDate"> 单据日期:</label> 
+                <div class="col-sm-3">
+                  <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                  datepicker-options="{minMode: 'day'}" 
+                  datepicker-mode="'day'"
+                  ng-model="complaintRequest.documentDate" is-open="opened" ng-readonly="true"
+                   close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本日'/>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="10" style="text-align: left"><label>质量调查：</label> <input type="checkbox" ng-model="complaintRequest.stentsFallOff">支架脱落 <input type="checkbox" ng-model="complaintRequest.cardGodet">卡导丝 <input type="checkbox" ng-model="complaintRequest.unpackFindProblem">拆包即发现问题 <input type="checkbox" ng-model="complaintRequest.otherQuality">其他 
+                <input type='text'  name='otherQualityProblems'
+                               ng-class="{'submitted':submitted}"
+                               ng-model="complaintRequest.otherQualityProblems">
+              </td>
+              <td colspan="6" style="text-align: left" class="col-sm-6">
+                <label class="control-label col-sm-2 field-required" style="text-align: right" for="electronicCertificate"> 电子证书:</label> 
+                <div class="col-sm-3">
+                  <select class="chosen-select col-sm-3 form-control"
+                      ng-model="complaintRequest.electronicCertificate"
+                      name="electronicCertificate"
+                      disabled="disabled"
+                      ng-options="item.electronicCertificate as item.electronicCertificate for item in electronicCertificateList"
+                      >
+                      <option value=""></option>
+                  </select>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="10" style="text-align: left"><label>分销商信息:</label></td>
+              <td colspan="6" style="text-align: left"><label>院方信息：</label></td>
+            </tr>
+
+            <tr>
+              <td colspan="10" style="text-align: left"><label class="col-sm-2 control-label field-required" style="text-align: right" for="distributorName" style="float:left">分销商名称: </label>
+                <div class="col-sm-8" style="float:left">
+                    <input type='text' class='col-sm-8 form-control'
+                    name='distributorName'
+                    disabled
+                    class='full-width form-control'
+                    ng-class="{'submitted':submitted}"
+                    ng-model="complaintRequest.distributorName">
+                </div>
+              </td>
+              <td colspan="6" style="text-align: left">
+                  <label class="col-sm-2 control-label field-required" style="text-align: right" for="hospitalName"> 医院名称:</label>
+                  <div class="col-sm-3">
+                      <select class="chosen-select col-sm-3 form-control"
+                          ng-model="complaintRequest.hospitalId"
+                          name="hospitalId"
+                          ng-blur="getHospitalMessage()"
+                          ng-change="getHospitalMessage()"
+                          ng-required="true"
+                          ng-options="item.FInterId as item.FName for item in hospitalList"
+                          >
+                          <option value="">选择医院名称</option>
+                      </select>
+                  </div>
+
+                  <label class="control-label col-sm-2 field-required" style="text-align: right" for="hospitalLevel"> 医院级别:</label> 
+                  <div class="col-sm-3">
+                      <input type='text' class='col-sm-3 form-control'
+                      name='hospitalLevel'
+                      disabled
+                      class='full-width form-control'
+                      ng-class="{'submitted':submitted}"
+                      ng-model="complaintRequest.hospitalLevel">
+                  </div>
+              </td>
+            </tr>
+
+
+            <tr>
+                <td colspan="10" style="text-align: left"><label class="col-sm-2 control-label field-required" style="text-align: right" for="distributorPhone" style="float:left">联系电话: </label>
+                  <div class="col-sm-3" style="float:left">
+                      <input type='text' class='col-sm-8 form-control'
+                      name='distributorPhone'
+                      class='full-width form-control'
+                      ng-class="{'submitted':submitted}"
+                      ng-model="complaintRequest.distributorPhone">
+                  </div>
+                  <label class="col-sm-2 control-label field-required" style="text-align: right" for="email" style="float:left">邮箱: </label>
+                  <div class="col-sm-3" style="float:left">
+                      <input type='text' class='col-sm-8 form-control'
+                      name='email'
+                      class='full-width form-control'
+                      ng-class="{'submitted':submitted}"
+                      ng-model="complaintRequest.email">
+                  </div>
+                </td>
+                <td colspan="6" style="text-align: left">
+                    <label class="col-sm-2 control-label field-required" style="text-align: right" for="surgeon"> 手术医生:</label>
+                    <div class="col-sm-3">
+                        <select class="chosen-select col-sm-3 form-control"
+                            ng-model="complaintRequest.surgeon"
+                            name="surgeon"
+                            ng-options="item.FName as item.FName for item in doctorList"
+                            >
+                            <option value="">选择手术医生</option>
+                        </select>
+                    </div>
+  
+                    <label class="control-label col-sm-2 field-required" style="text-align: right" for="workingExperience"> 从业经验:</label> 
+                    <div class="col-sm-3">
+                        <input type='text' class='col-sm-3 form-control'
+                        name='workingExperience'
+                        class='full-width form-control'
+                        ng-class="{'submitted':submitted}"
+                        ng-model="complaintRequest.workingExperience">
+                    </div>
+                </td>
+              </tr>
+
+
+              <tr>
+                  <td colspan="10" style="text-align: left"><label class="col-sm-2 control-label field-required" style="text-align: right" for="salesman" style="float:left">业务员: </label>
+                    <div class="col-sm-3" style="float:left">
+                        <input type='text' class='col-sm-8 form-control'
+                        name='salesman'
+                        class='full-width form-control'
+                        ng-class="{'submitted':submitted}"
+                        ng-model="complaintRequest.salesman">
+                    </div>
+                    <label class="col-sm-2 control-label field-required" style="text-align: right" for="FFXSPlaName" style="float:left">所属平台: </label>
+                    <div class="col-sm-3" style="float:left">
+                        <input type='text' class='col-sm-8 form-control'
+                        name='FFXSPlaName'
+                        disabled
+                        class='full-width form-control'
+                        ng-class="{'submitted':submitted}"
+                        ng-model="complaintRequest.FFXSPlaName">
+                    </div>
+                  </td>
+                  <td colspan="6" style="text-align: left">
+                      <label class="control-label col-sm-2 field-required" style="text-align: right" for="doctorPhone"> 联系电话:</label> 
+                      <div class="col-sm-3">
+                          <input type='text' class='col-sm-3 form-control'
+                          name='doctorPhone'
+                          class='full-width form-control'
+                          ng-class="{'submitted':submitted}"
+                          ng-model="complaintRequest.doctorPhone">
+                      </div>
+    
+
+                      <label class="control-label col-sm-2 field-required" style="text-align: right" for="surgeryDate"> 手术日期:</label> 
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control col-sm-3" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                            datepicker-options="{minMode: 'day'}" 
+                            datepicker-mode="'day'"
+                            ng-model="complaintRequest.surgeryDate" is-open="opened1" ng-readonly="true"
+                            close-text="关闭"  ng-click="opened1=true" clear-text="清除" current-text='本日'/>
+                        </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="10" style="text-align: left"><label>病人基本信息:</label></td>
+                  <td colspan="6" style="text-align: left"><label>综合信息：</label></td>
+                </tr>
+                <tr>
+                  <td colspan="10" style="text-align: left">
+                      <label class="col-sm-2 control-label field-required" style="text-align: right" for="PatientSex" style="float:left">病人性别: </label>
+                      <div class="col-sm-3" style="float:left">
+                          <select ng-model="complaintRequest.PatientSex" class="chosen-select col-sm-3 form-control" name="PatientSex" >
+                              <option value="男">男</option>
+                              <option value="女">女</option>
+                          </select>
+                      </div>
+                      <label class="col-sm-2 control-label field-required" style="text-align: right" for="PatientAge" style="float:left">年龄: </label>
+                      <div class="col-sm-3">
+                          <input type='text' class='col-sm-3 form-control'
+                          name='PatientAge'
+                          value="{{complaintRequest.PatientAge}}"
+                          class='full-width form-control'
+                          ng-class="{'submitted':submitted}"
+                          ng-model="complaintRequest.PatientAge">
+                      </div>
+                  </td>
+                  <td colspan="6" style="text-align: left">
+                      <label class="col-sm-2 control-label field-required" style="text-align: right" for="isIntoBody"> 是否进入体内:</label>
+                      <div class="col-sm-3">
+                          <select class="chosen-select col-sm-3 form-control"
+                              ng-model="complaintRequest.isIntoBody"
+                              name="isIntoBody"
+                              >
+                              <option value="是">是</option>
+                              <option value="否">否</option>
+                          </select>
+                      </div>
+
+                      <label class="col-sm-2 control-label field-required" style="text-align: right" for="problemTime"> 何时出现问题:</label>
+                      <div class="col-sm-3">
+                          <select class="chosen-select col-sm-3 form-control"
+                              ng-model="complaintRequest.problemTime"
+                              name="problemTime"
+                              >
+                              <option value="拆包">拆包</option>
+                              <option value="预备">预备</option>
+                              <option value="清洗">清洗</option>
+                              <option value="手术中">手术中</option>
+                              <option value="回撤">回撤</option>
+                              <option value="手术后">手术后</option>
+                          </select>
+                      </div>
+
+                  </td>
+                </tr>
+
+
+                <tr>
+                    <td colspan="10" style="text-align: left"><label class="col-sm-2 control-label field-required" style="text-align: right" for="diagnosis" style="float:left">病情诊断: </label>
+                      <div class="col-sm-8" style="float:left">
+                          <input type='text' class='col-sm-8 form-control'
+                          name='diagnosis'
+                          class='full-width form-control'
+                          ng-class="{'submitted':submitted}"
+                          ng-model="complaintRequest.diagnosis">
+                      </div>
+                    </td>
+                    <td colspan="6" style="text-align: left">
+                        <label class="col-sm-6 control-label field-required"  for="isPressure"> 植入前是否对产品施加任何正压或者负压？:</label>
+                        <div class="col-sm-4">
+                            <select class="chosen-select col-sm-3 form-control"
+                                ng-model="complaintRequest.isPressure"
+                                name="isPressure"
+                                >
+                                <option value="是">是</option>
+                                <option value="否">否</option>
+                                <option value="不适用">不适用</option>
+                            </select>
+                        </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                      <td colspan="10" style="text-align: left"><label class="col-sm-2 control-label field-required" style="text-align: right" for="diseasedRegion" style="float:left">病变部位: </label>
+                        <div class="col-sm-8" style="float:left">
+                            <input type='text' class='col-sm-8 form-control'
+                            name='diseasedRegion'
+                            class='full-width form-control'
+                            ng-class="{'submitted':submitted}"
+                            ng-model="complaintRequest.diseasedRegion">
+                        </div>
+                      </td>
+                      <td colspan="6" style="text-align: left">
+                          <label class="col-sm-7 control-label field-required"  for="diseasedRegionDetails"> 如果是，请具体说明（如：加压方式、所用器械、压力等）</label>
+                          <div class="col-sm-3" >
+                              <input type='text' class='col-sm-8 form-control'
+                              name='diseasedRegionDetails'
+                              class='full-width form-control'
+                              ng-class="{'submitted':submitted}"
+                              ng-model="complaintRequest.diseasedRegionDetails">
+                          </div>
+                      </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="10" style="text-align: left"><label>产品信息:</label></td>
+                        <td colspan="6" style="text-align: left">
+
+                            <label class="col-sm-2 control-label field-required" style="text-align: right" for="isPreExpansion"> 是否预扩张:</label>
+                            <div class="col-sm-3">
+                                <select class="chosen-select col-sm-3 form-control"
+                                    ng-model="complaintRequest.isPreExpansion"
+                                    name="isPreExpansion"
+                                    >
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                    <option value="不适用">不适用</option>
+                                </select>
+                            </div>
+      
+                            <label class="col-sm-3 control-label field-required"  for="isRatedPressure"> 是否在额定压力内:</label>
+                            <div class="col-sm-2">
+                                <select class="chosen-select col-sm-3 form-control"
+                                    ng-model="complaintRequest.isRatedPressure"
+                                    name="isRatedPressure"
+                                    >
+                                    <option value="是">是</option>
+                                    <option value="否">否</option>
+                                    <option value="不适用">不适用</option>
+                                </select>
+                            </div>
+      
+                        </td>
+                      </tr>
+
+
+                      <tr>
+                          <td colspan="10" style="text-align: left">
+                              <label class="col-sm-2 control-label field-required" style="text-align: right" for="productNumber" style="float:left">产品序号: </label>
+                              <div class="col-sm-3">
+                                  <input type='text' class='col-sm-3 form-control'
+                                  name='productNumber'
+                                  ng-required="true"
+                                  ng-blur="uniqueValidation()"
+                                  ng-change="uniqueValidation()"
+                                  class='full-width form-control'
+                                  ng-class="{'submitted':submitted}"
+                                  ng-model="complaintRequest.productNumber">
+                              </div>
+                              <label class="col-sm-2 control-label field-required" style="text-align: right" for="productName" style="float:left">产品名称: </label>
+                              <div class="col-sm-3">
+                                  <input type='text' class='col-sm-3 form-control'
+                                  name='productName'
+                                  disabled
+                                  class='full-width form-control'
+                                  ng-class="{'submitted':submitted}"
+                                  ng-model="complaintRequest.productName">
+                              </div>
+                          </td>
+                          <td colspan="6" style="text-align: left">
+                              <label class="col-sm-2 control-label field-required" style="text-align: right" for="isCalcification"> 是否钙化:</label>
+                              <div class="col-sm-3">
+                                  <select class="chosen-select col-sm-3 form-control"
+                                      ng-model="complaintRequest.isCalcification"
+                                      name="isCalcification"
+                                      >
+                                      <option value="是">是</option>
+                                      <option value="否">否</option>
+                                      <option value="不适用">不适用</option>
+                                  </select>
+                              </div>
+        
+                              <label class="col-sm-3 control-label field-required" style="text-align: right" for="isCurved"> 是否为弯曲的解剖结构:</label>
+                              <div class="col-sm-2">
+                                  <select class="chosen-select col-sm-3 form-control"
+                                      ng-model="complaintRequest.isCurved"
+                                      name="isCurved"
+                                      >
+                                      <option value="是">是</option>
+                                      <option value="否">否</option>
+                                      <option value="不适用">不适用</option>
+                                  </select>
+                              </div>
+        
+                          </td>
+                        </tr>
+
+
+                        <tr>
+                            <td colspan="10" style="text-align: left">
+                                <label class="col-sm-2 control-label field-required" style="text-align: right" for="productModel" style="float:left">产品规格: </label>
+                                <div class="col-sm-2">
+                                    <input type='text' class='col-sm-2 form-control'
+                                    name='productModel'
+                                    disabled
+                                    class='full-width form-control'
+                                    ng-class="{'submitted':submitted}"
+                                    ng-model="complaintRequest.productModel">
+                                </div>
+                                <label class="col-sm-2 control-label field-required" style="text-align: right;margin-left:-7%;" for="batchNumber" style="float:left">生产批号: </label>
+                                <div class="col-sm-2" style="margin-left:-1%;">
+                                    <input type='text' class='col-sm-2 form-control'
+                                    name='batchNumber'
+                                    disabled
+                                    class='full-width form-control'
+                                    ng-class="{'submitted':submitted}"
+                                    ng-model="complaintRequest.batchNumber">
+                                </div>
+
+                                <label class="col-sm-2 control-label field-required" style="text-align: right;margin-left:-7%;" for="expiryDate" style="float:left">有效期至: </label>
+                                <div class="col-sm-2" style="margin-left:-1.6%;">
+                                    <input type='text' class='col-sm-2 form-control'
+                                    name='expiryDate'
+                                    disabled
+                                    class='full-width form-control'
+                                    ng-class="{'submitted':submitted}"
+                                    ng-model="complaintRequest.expiryDate">
+                                </div>
+                            </td>
+                            <td colspan="6" style="text-align: left">
+                                <label class="col-sm-3 control-label field-required" style="text-align: right" for="isToDisinfect"> 出现问题后是否重新消毒:</label>
+                                <div class="col-sm-2">
+                                    <select class="chosen-select col-sm-3 form-control"
+                                        ng-model="complaintRequest.isToDisinfect"
+                                        name="isToDisinfect"
+                                        >
+                                        <option value="是">是</option>
+                                        <option value="否">否</option>
+                                        <option value="不适用">不适用</option>
+                                    </select>
+                                </div>
+          
+                            </td>
+                          </tr>
+
+
+
+                          <tr>
+                              <td colspan="10" style="text-align: left">
+                                  <label class="col-sm-6 control-label field-required" style="text-align: right;margin-left:2%;" for="isTechnologyAssessment" >产品是否需要做技术上的评估？（如果是须收回产品） </label>
+                                  <div class="col-sm-4" style="float:left;margin-left:-2%;">
+                                      <select ng-model="complaintRequest.isTechnologyAssessment" class="chosen-select col-sm-3 form-control" name="isTechnologyAssessment" >
+                                          <option value="是">是</option>
+                                          <option value="否">否</option>
+                                      </select>
+                                  </div>
+                              </td>
+                              <td colspan="6" style="text-align: left;">
+                                  <label class="col-sm-4 control-label field-required" style="text-align: right;" for="gtbasotc"> 使用的指引导管品牌及规格：</label>
+                                  <div class="col-sm-6" style="float:left">
+                                      <input type='text' class='col-sm-6 form-control'
+                                      name='gtbasotc'
+                                      class='full-width form-control'
+                                      ng-class="{'submitted':submitted}"
+                                      ng-model="complaintRequest.gtbasotc">
+                                  </div>
+                              </td>
+                            </tr>
+
+
+                            <tr>
+                                <td colspan="10" style="text-align: left">
+                                    <label class="col-sm-3 control-label field-required" style="text-align: right" for="role"> 如果需要评估，请选择：</label>
+                                    <div class="col-sm-8" style="float:left">
+                                        <input type="checkbox" ng-model="complaintRequest.packaging">包装 
+                                        <input type="checkbox" ng-model="complaintRequest.balloonCatheter">输送系统（球囊导管） 
+                                        <input type="checkbox" ng-model="complaintRequest.SupportHead">支架头 
+                                        <input type="checkbox" ng-model="complaintRequest.leadWire">指引导丝 
+                                        <input type="checkbox" ng-model="complaintRequest.OtherEvaluationContents">其他 
+                                        <input type='text'  name='OtherEvaluationContentsDetails'
+                                                      ng-class="{'submitted':submitted}" style = "width:54px;"
+                                                      ng-model="complaintRequest.OtherEvaluationContentsDetails">
+                                    </div>
+                                    
+                                </td>
+                                <td colspan="6" style="text-align: left">
+                                    <label class="col-sm-3 control-label field-required" style="text-align: right" for="basogw"> 使用的导丝品牌及规格：</label>
+                                    <div class="col-sm-7" style="float:left">
+                                        <input type='text' class='col-sm-6 form-control'
+                                        name='basogw'
+                                        class='full-width form-control'
+                                        ng-class="{'submitted':submitted}"
+                                        ng-model="complaintRequest.basogw">
+                                    </div>
+                                </td>
+                              </tr>
+
+                              <tr>
+                                  <td colspan="10" style="text-align: left">
+                                      <label class="col-sm-2 control-label field-required" style="text-align: right" for="role" style="float:left">补充信息: </label>
+                                      <div class="col-sm-3" style="float:left">
+                                          <select ng-model="complaintRequest.isCd" class="chosen-select col-sm-3 form-control" name="isCd" >
+                                              <option value="有CD">有CD</option>
+                                              <option value="无CD">无CD</option>
+                                          </select>
+                                      </div>
+                                      <div class="col-sm-3">
+                                          <input type="checkbox" ng-model="complaintRequest.doctorSuggests">医生说明
+                                      </div>
+                                  </td>
+                                  <td colspan="6" style="text-align: left">
+                                      <label class="col-sm-4 control-label field-required" style="text-align: right" for="brandSpecificationBalloonCatheter"> 使用的球囊导管品牌及规格：</label>
+                                      <div class="col-sm-6" style="float:left">
+                                          <input type='text' class='col-sm-6 form-control'
+                                          name='brandSpecificationBalloonCatheter'
+                                          class='full-width form-control'
+                                          ng-class="{'submitted':submitted}"
+                                          ng-model="complaintRequest.brandSpecificationBalloonCatheter">
+                                      </div>
+                                  </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="10" style="text-align: left">
+                                        <label class="col-sm-2 control-label field-required" style="text-align: right" for="otherNote"> 其他：</label>
+                                        <div class="col-sm-4" style="float:left">
+                                            <input type='text' class='col-sm-4 form-control'
+                                            name='otherNote'
+                                            class='full-width form-control'
+                                            ng-class="{'submitted':submitted}"
+                                            ng-model="complaintRequest.otherNote">
+                                        </div>
+                                    </td>
+                                    <td colspan="6" style="text-align: left">
+                                        <label class="col-sm-4 control-label field-required" style="text-align: right" for="dealAbsentLesion"> 未通过病变的，是如何处理的：</label>
+                                        <div class="col-sm-6" style="float:left">
+                                            <input type='text' class='col-sm-6 form-control'
+                                            name='dealAbsentLesion'
+                                            class='full-width form-control'
+                                            ng-class="{'submitted':submitted}"
+                                            ng-model="complaintRequest.dealAbsentLesion">
+                                        </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                      <td colspan="16" style="text-align: left">
+                                        <label>事件描述：</label>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="16" style="text-align: left">
+                                            <label class="col-sm-1 control-label field-required" style="text-align: right" for="clinicalOutcome" style="float:left">临床结果: </label>
+                                            <div class="col-sm-2" style="float:left">
+                                                <select ng-model="complaintRequest.clinicalOutcome" class="chosen-select col-sm-2 form-control" name="clinicalOutcome" >
+                                                    <option value="换用同品牌">换用同品牌</option>
+                                                    <option value="换用其他品牌">换用其他品牌</option>
+                                                    <option value="放弃植入">放弃植入</option>
+                                                    <option value="停止手术">停止手术</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-sm-1 control-label field-required" style="text-align: right" for="patientInjury" style="float:left">病人伤害: </label>
+                                            <div class="col-sm-1" style="float:left">
+                                                <select ng-model="complaintRequest.patientInjury" class="chosen-select col-sm-2 form-control" name="patientInjury" >
+                                                    <option value="无伤害">无伤害</option>
+                                                    <option value="轻微伤害">轻微伤害</option>
+                                                    <option value="严重伤害">严重伤害</option>
+                                                    <option value="死亡">死亡</option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="16" style="text-align: left">
+                                            <label class="col-sm-1 control-label field-required" style="text-align: right" for="patientComplication" style="float:left">病人并发症: </label>
+                                            <div class="col-sm-1" style="float:left">
+                                                <select ng-model="complaintRequest.patientComplication" class="chosen-select col-sm-1 form-control" name="patientComplication" >
+                                                    <option value="是">是</option>
+                                                    <option value="否">否</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-sm-2 control-label field-required" style="text-align: right" for="complicationDetail" style="float:left">如果是请描述细节: </label>
+                                            <div class="col-sm-7">
+                                                <input type='text' class='col-sm-3 form-control'
+                                                name='complicationDetail'
+                                                class='full-width form-control'
+                                                ng-class="{'submitted':submitted}"
+                                                ng-model="complaintRequest.complicationDetail">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="16" style="text-align: left">
+                                            <label class="col-sm-1 control-label field-required" style="text-align: right" for="selectedSite" style="float:left">外科手术: </label>
+                                            <div class="col-sm-1" style="float:left">
+                                                <select ng-model="complaintRequest.selectedSite" class="chosen-select col-sm-1 form-control" name="selectedSite" >
+                                                    <option value="是">是</option>
+                                                    <option value="否">否</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-sm-2 control-label field-required" style="text-align: right" for="isSurgery" style="float:left">如果是请说明: </label>
+                                            <div class="col-sm-7">
+                                                <input type='text' class='col-sm-3 form-control'
+                                                name='isSurgery'
+                                                class='full-width form-control'
+                                                ng-class="{'submitted':submitted}"
+                                                ng-model="complaintRequest.isSurgery">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="16" style="text-align: left">
+                                            <label class="col-sm-1 control-label field-required" style="text-align: right" for="incidentDescription"> 事件描述：</label>
+                                            <div class="col-sm-10" style="float:left">
+                                                <input type='text' class='col-sm-4 form-control'
+                                                name='incidentDescription'
+                                                class='full-width form-control'
+                                                ng-class="{'submitted':submitted}"
+                                                
+                                                ng-model="complaintRequest.incidentDescription">
+                                            </div>
+                                        </td>
+                                      </tr>
+                                      
+                      
+          </table>
+          <button type="submit" class="btn btn-success" ng-disabled="!complaintRequest.isSaveAndSubmit" ng-click="addComplaintRequest()" >保存</button>
+          <button type="submit" class="btn btn-success" ng-disabled="!complaintRequest.isSaveAndSubmit||!complaintRequest.feedbackNumber" ng-click="commitComplaintRequest()" >提交</button>
+          <button type="submit" class="btn btn-success" ng-click="return()" >返回</button>
+        </form>
+      </div>
+      </div>  
+
+    <pre ng-show="debug">complaintRequest.surgeon:{{complaintRequest.surgeon | json}}</pre>	
+
+   <!--  <pre ng-show="debug">complaintRequest:{{complaintRequest | json}}</pre>	 -->
+
+

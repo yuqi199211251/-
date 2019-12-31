@@ -1,0 +1,127 @@
+<h2 class="text-center" style="padding-top:20px">明细-反馈报告</h2>
+<!-- <div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="margin-top-5" style="text-align:center">
+         <form role="form" name="toNoForm" class="form-inline">
+          <div class="form-group">
+            <label class="control-label no-padding-right field-required" for="startDate"> 单据日期初始:</label> 
+                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                  datepicker-options="{minMode: 'day'}" 
+                  datepicker-mode="'day'"
+                ng-model="temp.startDate" is-open="opened" ng-readonly="true"
+                ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本日'/>
+          </div>
+          <div class="form-group">
+            <label class="control-label no-padding-right field-required" for="endDate"> 单据日期截止:</label> 
+            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                  datepicker-options="{minMode: 'day'}" 
+                  datepicker-mode="'day'"
+                ng-model="temp.endDate" is-open="opened2" ng-readonly="true"
+                ng-required="true" close-text="关闭"  ng-click="opened2=true" clear-text="清除" current-text='本日'/>
+          </div>
+          <button type="submit" class="btn btn-default" ng-click="queryFeedbackDetailList()" >查询</button>
+        </form>
+      </div>
+</div>   -->
+<div class="margin-top-20" style="padding:30px 0 10px 0">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+                <th class="text-center" style="display: none">
+                    <a class="cursor-pointer" ng-click="sortType = 'FkbgFid'; sortReverse = !sortReverse">
+                    反馈单据id
+                    <span ng-show="sortType == 'FkbgFid' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'FkbgFid' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </th>
+              <th class="text-center">
+                  <a class="cursor-pointer" ng-click="sortType = 'FBillNo'; sortReverse = !sortReverse">
+                  投诉编号
+                  <span ng-show="sortType == 'FBillNo' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'FBillNo' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+              </th>
+              <th class="text-center">
+                  <a class="cursor-pointer" ng-click="sortType = 'hospitalName'; sortReverse = !sortReverse">
+                  医院名称
+                  <span ng-show="sortType == 'hospitalName' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'hospitalName' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+              </th>
+              <th class="text-center">
+                  <a class="cursor-pointer" ng-click="sortType = 'agentName'; sortReverse = !sortReverse">
+                  经销商
+                  <span ng-show="sortType == 'agentName' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'agentName' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+              </th>
+              <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FeedbackAbstract'; sortReverse = !sortReverse">
+                  摘要
+                <span ng-show="sortType == 'FeedbackAbstract' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FeedbackAbstract' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FNumber'; sortReverse = !sortReverse">
+                序列号
+                <span ng-show="sortType == 'FNumber' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FNumber' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'Fhhzt'; sortReverse = !sortReverse">
+                状态
+                <span ng-show="sortType == 'Fhhzt' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Fhhzt' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                    <a class="cursor-pointer" ng-click="sortType = 'createTime'; sortReverse = !sortReverse">
+                    添加时间
+                    <span ng-show="sortType == 'createTime' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'createTime' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+            </th>
+            
+            <!-- <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'statusZN'; sortReverse = !sortReverse">
+                状态
+                <span ng-show="sortType == 'statusZN' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'statusZN' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> -->
+            <!-- <th class="text-center">
+                操作
+            </th> -->
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="FeedbackDetailListByPage&&FeedbackDetailListByPage.length>0" 
+                ng-repeat="(idx,FeedbackDetail) in FeedbackDetailListByPage | orderBy:sortType:sortReverse">
+                <td style="display: none">{{FeedbackDetail.FkbgFid}}</td>
+                <td width="6%" class="text-center"><a href="#/display-image?FID={{FeedbackDetail.FkbgFid}}" active-link="active"> {{FeedbackDetail.FBillNo}}</a></td>
+                <td width="20%" class="text-center">{{FeedbackDetail.hospitalName}}</td>
+                <td width="16%" class="text-center">{{FeedbackDetail.agentName}}</td>
+                <td width="13%" class="text-center">{{FeedbackDetail.FeedbackAbstract}}</td>
+                <td width="4%" class="text-center">{{FeedbackDetail.FNumber}}</td>
+                <td width="18%" class="text-center">{{FeedbackDetail.Fhhzt}}</td>
+                <td width="13%" class="text-center">{{FeedbackDetail.createTime}}</td>
+                <!-- <td width="3%" class="text-center" >
+                        <button type="button" class="btn btn-info btn-xs" ng-click="addEditFeedbackDetail(FeedbackDetail)">
+                                编辑 
+                        </button>
+                </td> -->
+        </tr>
+        <tr ng-if="!FeedbackDetailList||FeedbackDetailList.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+</div>
+
+    <!-- <pre ng-show="debug">FeedbackDetailList:{{FeedbackDetailList | json}}</pre>	 -->
+    <pre ng-show="debug">authUser:{{authUser|json}}</pre >
+    <pre ng-show="debug">FeedbackDetailListByPage:{{FeedbackDetailListByPage | json}}</pre>	

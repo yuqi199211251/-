@@ -1,0 +1,203 @@
+<div class="modal-header dialog-header-confirm">
+    <button type="button" class="close" ng-click="$dismiss()">
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+    <div class="modal-title">
+      <span class="fa fa-university"></span>
+      <span>添加</span>
+    </div>
+  </div>
+  <form class="form-horizontal" role="form" name="myForm" novalidate class="jm" ng-class="{submitted:submitted}">
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-7 col-sm-offset-3 error ng-binding" ng-if='error'>
+            <i class="fa fa-minus-circle"></i> {{error.text}}
+          </div>
+          
+          <div class="form-group" ng-show="false">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="FItemID"> FItemID </label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-12 form-control'
+                                 name='FItemID'
+                                 ng-required="true"               
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted,'error':(!cust.FItemID)}"
+                                 ng-model="cust.FItemID"
+                                 value = "{cust.FItemID}"
+                                 placeholder="FItemID"
+                                 autocomplete="off">
+            </div>
+          </div>
+     
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 医生姓名</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_106'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.FName"
+                                 placeholder="医生姓名">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 出生日期</label>
+            <div class="col-sm-6">
+                
+
+                                 <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                                 datepicker-options="{minMode: 'day'}" 
+                                 datepicker-mode="'day'"
+                               ng-model="cust.F_101" is-open="opened" ng-readonly="true"
+                               ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本日'/>             
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 性别</label>
+            <div class="col-sm-6">
+                <select class="form-control" ng-model="cust.F_111" >
+                    <option value="">请选择</option>
+                    <option value="男">男</option>
+                    <option value="女">女</option>
+                </select>               
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 护照号</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_109'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.F_103"
+                                 placeholder="护照号">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 身份证</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_110'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.F_104"
+                                 placeholder="身份证">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 从业年限</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_111'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.F_105"
+                                 placeholder="从业年限">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 联系电话</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_111'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.F_107"
+                                 placeholder="联系电话">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 手机</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_111'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.F_108"
+                                 placeholder="手机">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> vip级别</label>
+            <div class="col-sm-6">
+                <select class="form-control" ng-model="cust.F_109" >
+                    <option value="">请选择</option>
+                    <option value="1">是</option>
+                    <option value="0">否</option>
+                </select> 
+                 
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name"> 职务</label>
+            <div class="col-sm-6">
+                 <input type='text' class='col-sm-6 form-control'
+                                 name='F_111'
+                                 ng-required="true"
+                                 class='full-width form-control'
+                                 ng-class="{'submitted':submitted}"
+                                 ng-model="cust.F_110"
+                                 placeholder="职务">
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+         
+
+          <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right field-required" for="name">所属医院</label>
+            <div class="col-sm-6">
+                 <select class='col-sm-6 form-control'  ng-model="cust.hospital_" >
+                     <option ng-repeat="item in select_" value="{{item.FitemID}}" >{{item.FName}}</option>
+                 </select>  
+            </div>
+            <!-- <div class="col-sm-3 margin-top-5">Max Char:3</div> -->
+          </div>
+
+          
+
+          <div class="clearboth"></div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="modal-footer text-center">
+      <button type="submit" class="btn btn-primary" ng-click="submit()" 
+      >
+        提交
+      </button>
+      <button type="button" class="btn btn-default" ng-click="reset()">
+        重置
+      </button>
+      <button type="button" class="btn btn-default" ng-click="$dismiss()">
+        取消
+      </button>
+    </div>
+  </form>
+  <pre ng-show="debug">{{complaintRequest|json}}</pre >
+  

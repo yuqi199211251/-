@@ -1,0 +1,184 @@
+<h2 class="text-center" style="padding-top:20px">换货申请单维护</h2>
+<div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="margin-top-5" style="text-align:center">
+         <form role="form" name="toNoForm" class="form-inline">
+          <div class="form-group">
+            <label class="control-label no-padding-right field-required" for="startDate"> 单据日期初始:</label> 
+                <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                  datepicker-options="{minMode: 'day'}" 
+                  datepicker-mode="'day'"
+                ng-model="temp.startDate" is-open="opened" ng-readonly="true"
+                ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本日'/>
+          </div>
+          <div class="form-group">
+            <label class="control-label no-padding-right field-required" for="endDate"> 单据日期截止:</label> 
+            <input type="text" class="form-control" datepicker-popup="yyyy-MM-dd" placeholder="请选择日期" 
+                  datepicker-options="{minMode: 'day'}" 
+                  datepicker-mode="'day'"
+                ng-model="temp.endDate" is-open="opened2" ng-readonly="true"
+                ng-required="true" close-text="关闭"  ng-click="opened2=true" clear-text="清除" current-text='本日'/>
+          </div>
+          <button type="submit" class="btn btn-default" ng-click="queryComplaintRequestList()" >查询</button>
+        </form>
+      </div>
+      </div>  
+<div class="margin-top-20" style="padding:30px 0 10px 0">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FUserName'; sortReverse = !sortReverse">
+                申请人
+                <span ng-show="sortType == 'FUserName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FUserName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FDate'; sortReverse = !sortReverse">
+                单据日期
+                <span ng-show="sortType == 'FDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FBillNO'; sortReverse = !sortReverse">
+                单据编号
+                <span ng-show="sortType == 'FBillNO' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FBillNO' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FName'; sortReverse = !sortReverse">
+                医院
+                <span ng-show="sortType == 'FName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FSerialNum'; sortReverse = !sortReverse">
+                序列号
+                <span ng-show="sortType == 'FSerialNum' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FSerialNum' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FHhzt_CurrName'; sortReverse = !sortReverse">
+                换货状态
+                <span ng-show="sortType == 'FHhzt_CurrName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FHhzt_CurrName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCheckDate1'; sortReverse = !sortReverse">
+                提交日期
+                <span ng-show="sortType == 'FCheckDate1' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCheckDate1' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                最后处理时间
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'lieBie'; sortReverse = !sortReverse">
+                单据类别
+                <span ng-show="sortType == 'lieBie' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'lieBie' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'picture'; sortReverse = !sortReverse">
+                图片
+                <span ng-show="sortType == 'picture' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'picture' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FMailDate'; sortReverse = !sortReverse">
+                邮寄时间
+                <span ng-show="sortType == 'FMailDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FMailDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FMailNumber'; sortReverse = !sortReverse">
+                运单号
+                <span ng-show="sortType == 'FMailNumber' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FMailNumber' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <!-- <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FDZZS'; sortReverse = !sortReverse">
+                电子签章
+                <span ng-show="sortType == 'FDZZS' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FDZZS' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> -->
+            
+            <!-- <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'statusZN'; sortReverse = !sortReverse">
+                状态
+                <span ng-show="sortType == 'statusZN' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'statusZN' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th> -->
+            <th class="text-center">
+                操作
+            </th>
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="complaintRequestListByPage&&complaintRequestListByPage.length>0" 
+                ng-repeat="(idx,complaintRequest) in complaintRequestListByPage | orderBy:sortType:sortReverse">
+            <td width="4%" class="text-center">{{complaintRequest.FUserName}}</td>
+            <td width="7%" class="text-center">{{complaintRequest.FDate|date:'yyyy-MM-dd'}}</td>
+            <td width="5%" class="text-center">{{complaintRequest.FBillNO}}</td>
+            <td width="11%" class="text-center">{{complaintRequest.FName}}</td>
+            <td width="5%" class="text-center">{{complaintRequest.FSerialNum}}</td>
+            <td width="7%" class="text-center">{{complaintRequest.FHhzt_CurrName}}</td>
+            <td width="12%" class="text-center">{{complaintRequest.FCheckDate1|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+            <td width="7%" class="text-center">{{complaintRequest.FCurCheckDate|date:'yyyy-MM-dd'}}</td>
+            <td width="6%" class="text-center">{{complaintRequest.lieBie}}</td>
+            <td width="4%" class="text-center"><a href="#/display-image?FID={{complaintRequest.FID}}" active-link="active">{{complaintRequest.picture}}</a></td>
+
+            <td width="7%" class="text-center">{{complaintRequest.FMailDate|date:'yyyy-MM-dd'}}</td>
+            <td width="8%" class="text-center">{{complaintRequest.FMailNumber}}</td>
+            <!-- <td width="7%" class="text-center">{{complaintRequest.FDZZS}}</td> -->
+            <td width="29%" class="text-center" >
+                    <button type="button" class="btn btn-info btn-xs" ng-click="addEditComplaintRequest(complaintRequest)">
+                            查看编辑 
+                    </button>
+                    <button type="button" class="btn btn-info btn-xs" ng-click="checkComplaintRequest(complaintRequest)">
+                        录入运单
+                    </button>
+                    <button type="button" class="btn btn-info btn-xs" ng-click="showAuditLog(complaintRequest)">
+                        日志
+                    </button>
+                    <button type="button" class="btn btn-danger btn-xs"   confirm-required="投诉单号：{{complaintRequest.FBillNO}}" 
+                                ng-click="deleteComplaintRequest(complaintRequest)">
+                            删除 
+                    </button>
+            </td>
+        </tr>
+        <tr ng-if="!complaintRequestList||complaintRequestList.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+    <div class="margin-top text-center" ng-show="authUser&&(authUser.UserRole==='agent'||authUser.UserRole==='businessDirector')">
+        <button type="button" class="btn btn-success" ng-click="addEditComplaintRequest()">
+            <span class="fa fa-plus-circle fa-lg"></span>
+            添加换货申请单
+        </button>
+    </div>
+</div>
+
+    <!-- <pre ng-show="debug">complaintRequestList:{{complaintRequestList | json}}</pre>	 -->
+    <pre ng-show="debug">authUser:{{authUser|json}}</pre >
+    <pre ng-show="debug">complaintRequestListByPage:{{complaintRequestListByPage | json}}</pre>	

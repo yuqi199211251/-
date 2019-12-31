@@ -1,0 +1,640 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅申请</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row" style="float: right;">
+                    <div class="col-md-3">
+                        <a href="#/travelRequest"><img src="./picture/jwmsTRE.png"></a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/travelExpense"><img src="./picture/jwmsTEX.png"></a>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./picture/jwmsBRE.png">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./picture/jwmsBEX.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- begin -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅申请抬头<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span></h3>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">申请号</label>
+                    <div class="col-sm-5"><input type="text" class="form-control" ng-model="requestNum"></div>
+                    <label class="col-sm-1 control-label">创建日期<span style="color: red">*</span></label>
+                    <div class="col-sm-5"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                            placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                            ng-model="yearSel" is-open="opened" ng-readonly="true" ng-required="true" close-text="关闭"
+                            ng-click="opened=true" clear-text="清除" current-text='本日' /></div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">版本号</label>
+                    <div class="col-sm-5">1</div>
+                    <label class="col-sm-1 control-label">付款币别</label>
+                    <div class="col-sm-5">RMB</div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">申请人<span style="color: red">*</span></label>
+                    <div class=" col-sm-5 form-inline">
+                        <input type="hidden" value="" class="form-control" ng-model="displayName">
+                        <input readonly="readonly" type="text" value="" class="form-control " ng-model="applyPeople"
+                            style="width: 90%;">
+                        <span ng-if="!markSave"> <button data-target="#applyPeople" data-toggle="modal" type="button"
+                                class="btn btn-primary ">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <label class="col-sm-1 control-label">项目号</label>
+                    <div class="col-sm-5 form-inline"><input readonly="readonly" type="text" value=""
+                            class="form-control" style="width: 90%;" ng-model="projectNumSlec">
+                        <span ng-if="!markSave"> <button data-target="#projectNum" data-toggle="modal" type="button"
+                                class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span></div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">公司/部门<span style="color: red">*</span></label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" style="width: 30%!important;float: left;"
+                            value="6200-吉威医疗制品" readonly>
+                        <select class="form-control input-lg"
+                            style="height: 34px;padding:0;width: 70%!important;float: left;" id="departmentId"
+                            ng-model="departmentId">
+                        </select></div>
+                    <label class="col-sm-1 control-label">差旅目的<span style="color: red">*</span></label>
+                    <div class="col-sm-5"><select class="form-control input-lg" style="height: 34px;padding:0;"
+                            id="travelPurpose" ng-model="travelPurpose">
+                            <option value="TP001-参加培训">TP001-参加培训</option>
+                            <option value="TP002-参加展会">TP002-参加展会</option>
+                            <option value="TP003-工作需要">TP003-工作需要</option>
+                            <option value="TP004-拜访代理商">TP004-拜访代理商</option>
+                            <option value="TP005-拜访医生专家">TP005-拜访医生专家</option>
+                            <option value="TP006-陪同客户出差">TP006-陪同客户出差</option>
+                            <option value="TP007-其他">TP007-其他</option>
+                        </select></div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">成本中心<span style="color: red">*</span></label>
+                    <div class="col-sm-5 form-inline"><input readonly="readonly" type="text" value=""
+                            class="form-control" style="width: 90%" ng-model="costCenterSlec">
+                        <span ng-if="!markSave"> <button data-target="#costCenter" data-toggle="modal" type="button"
+                                class="btn btn-primary">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span></div>
+                    <label class="col-sm-1 control-label">总金额</label>
+                    <div class="col-sm-5"><input type="text" value="" class="form-control" ng-model="totalAmount"
+                            readonly></div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">起始日期<span style="color: red">*</span></label>
+                    <div class="col-sm-5"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                            placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                            ng-model="beginDate" is-open="openedBegin" ng-readonly="true" ng-required="true"
+                            close-text="关闭" ng-click="openedBegin=true" clear-text="清除" current-text='本日' />
+                    </div>
+                    <label class="col-sm-1 control-label">截止日期<span style="color: red">*</span></label>
+                    <div class="col-sm-5"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                            placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                            ng-model="endDate" is-open="openedEnd" ng-readonly="true" ng-required="true" close-text="关闭"
+                            ng-click="openedEnd=true" clear-text="清除" current-text='本日' /></div>
+                </div>
+            </div>
+            <div class="panel-body" style="padding: 5px!important;">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">备注<span style="color: red">*</span></label>
+                    <div class="col-sm-11"><textarea class="form-control" ng-model="internalRemarks"></textarea></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- middle -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅申请明细<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button class="btn btn-primary btn-3d" data-target="#detailtitle" data-toggle="modal"
+                        ng-if="!markSave"><i class="fa fa-plus"></i> 新增</button>
+                    <!-- <button class="btn btn-danger btn-3d" ng-click="removeDetailTitleCheckBox()"><i class="fa fa-trash-o"></i> 删除</button> -->
+                    <button class="btn btn-info btn-3d" ng-click="flushDetailTitleCheckBox()" ng-if="!markSave"><i
+                            class="glyphicon glyphicon-repeat"></i> 刷新</button>
+                    <!-- <div style="float: right;;margin-left: 1%;">
+                        <button class="btn btn-success btn-3d"><i class="fa fa-search"></i> 查询</button>
+                    </div>
+
+                    <div style="float: right;">
+                        <input type="text" class="form-control" style="margin-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">All fields</option>
+                            <option value="">出发地</option>
+                            <option value="">目的地</option>
+                            <option value="">飞机票</option>
+                            <option value="">机场往返</option>
+                            <option value="">住宿</option>
+                            <option value="">火车/汽车/轮船</option>
+                            <option value="">出差餐补</option>
+                            <option value="">出差地市内交通</option>
+                            <option value="">其他</option>
+                            <option value="">小计</option>
+                            <option value="">备注</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Quick Search:</p>
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">Default</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Selected Filter:</p>
+                    </div> -->
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th></th> -->
+                            <th>出发地</th>
+                            <th>目的地</th>
+                            <th>起始日期</th>
+                            <th>截止日期</th>
+                            <th>飞机票</th>
+                            <th>机场往返</th>
+                            <th>住宿</th>
+                            <th>火车/汽车/轮船</th>
+                            <th>出差餐补</th>
+                            <th>出差地市内交通</th>
+                            <th>其他</th>
+                            <th>小计</th>
+                            <th>备注</th>
+                            <th ng-if="!markSave">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="!detailList||detailList.length==0">
+                            <!-- <td></td> -->
+                            <td colspan="12">暂无数据</td>
+                        </tr>
+                        <tr ng-if="detailList&&detailList.length>0&&detailList!=undefined"
+                            ng-repeat="(idx,detailL) in detailList | orderBy:sortType:sortReverse">
+                            <td style="display: none;"><input type="checkbox" id="{{idx}}" value="{{idx}}"
+                                    name="detailCheckBox"></td>
+                            <td style="display: none;">{{detailL.id}}</td>
+
+                            <td>{{detailL.cfd}}</td>
+                            <td>{{detailL.mdd}}</td>
+                            <td>{{detailL.beginDateDetail}}</td>
+                            <td>{{detailL.endDateDetail}}</td>
+                            <td>{{detailL.fjp}}</td>
+                            <td>{{detailL.jcwf}}</td>
+                            <td>{{detailL.zs}}</td>
+                            <td>{{detailL.hcqclc}}</td>
+                            <td>{{detailL.cccb}}</td>
+                            <td>{{detailL.ccdsnjt}}</td>
+                            <td>{{detailL.qt}}</td>
+                            <td>{{detailL.fyxj}}</td>
+                            <td>{{detailL.bz}}</td>
+                            <td ng-if="!markSave"><button class="btn btn-primary btn-3d"
+                                    ng-click="updateDetailTitle(detailL,idx)"><i class="fa fa-file-text-o"></i>
+                                    修改</button>
+                                <button class="btn btn-danger btn-3d" ng-click="removeDetailTitleCheckBox(idx)"><i
+                                        class="fa fa-trash-o"></i> 删除</button></td>
+                        </tr>
+                        <tr id="detailDataTotal" ng-if="detailList&&detailList.length>0&&detailList!=undefined">
+                            <td colspan="4"></td>
+                            <td>￥{{fjpTotal}}</td>
+                            <td>￥{{jcwfTotal}}</td>
+                            <td>￥{{zsTotal}}</td>
+                            <td>￥{{hcqclcTotal}}</td>
+                            <td>￥{{cccbTotal}}</td>
+                            <td>￥{{ccdsnjtTotal}}</td>
+                            <td>￥{{qtTotal}}</td>
+                            <td>￥{{fyxjTotal}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">差旅申请附件<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button class="btn btn-primary btn-3d" ng-click="addFileModal()" ng-if="!markSave"><i
+                            class="fa fa-plus"></i>
+                        新增</button>
+                    <!-- <button class="btn btn-danger btn-3d"><i class="fa fa-trash-o"></i> 删除</button> -->
+                    <button class="btn btn-info btn-3d" ng-if="!markSave"><i class="glyphicon glyphicon-repeat"></i>
+                        刷新</button>
+                    <!-- <div style="float: right;;margin-left: 1%;">
+                        <button class="btn btn-success btn-3d"><i class="fa fa-search"></i> 查询</button>
+                    </div>
+
+                    <div style="float: right;">
+                        <input type="text" class="form-control" style="margin-left: 5%;">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">All fields</option>
+                            <option value="">选择待上传文件</option>
+                            <option value="">文件描述</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Quick Search:</p>
+                    </div>
+                    <div style="float: right;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">Default</option>
+                        </select>
+                    </div>
+                    <div style="float: right;">
+                        <p style="padding: 10px 9px;">Selected Filter:</p>
+                    </div> -->
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>选择待上传文件</th>
+                            <th>文件描述</th>
+                            <th ng-if="!markSave">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="fileData" ng-if="!fileList||fileList.length==0">
+                            <td colspan="13">暂无数据</td>
+
+                        </tr>
+                        <tr ng-if="fileList&&fileList.length>0&&fileList!=undefined"
+                            ng-repeat="(idx,fileL) in fileList | orderBy:sortType:sortReverse">
+
+                            <td style="display: none;"><input type="checkbox" id="{{idx}}" value="{{idx}}"
+                                    name="fileCheckBox"></td>
+                            <td style="display: none;">{{fileL.id}}</td>
+                            <td style="display: none;">{{fileL.fileurl}}</td>
+                            <td style="display: none;">{{fileL.fileName}}</td>
+                            <td>
+                                <div style="position: relative;">
+                                    <!-- <img src="./picture/upload.png"> -->
+                                    <input type="file" id="fileUpload{{idx}}" style="float: left;"
+                                        ng-if="!markSave" /><span ng-if="fileL.fileName">原文件名称：<a
+                                            href="./jmapi/common/public/downLoadFile.json?fileName={{fileL.fileName}}&&fileurl={{fileL.fileurl}}">{{fileL.fileName}}</a></span>
+                                    <br />
+                                </div>
+                            </td>
+                            <td><input class="form-control" style="padding: 0 12px!important;" id="description{{idx}}"
+                                    value="{{fileL.Description}}">
+
+                            </td>
+                            <td ng-if="!markSave"><button class="btn btn-danger btn-3d" ng-click="removeFile(idx)"><i
+                                        class="fa fa-trash-o"></i> 删除</button></td>
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer" style="float:left;">
+    <!-- <button type="button" class="btn btn-primary" ng-click="backAllTravelRequest()">
+        返回
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="submitAllTravelRequest()">
+        提交
+    </button> -->
+    <button type="button" class="btn btn-primary" ng-click="saveAllTravelRequest(updateProcessID)" ng-if="!markSave"
+        ng-disabled="!yearSel||!applyPeople||!travelPurpose||!costCenterSlec||!beginDate||!endDate||!internalRemarks">
+        保存
+    </button>
+    <button type="button" ng-click="cancel()" class="btn btn-default" data-dismiss="modal" ng-if="!markSave">取消
+    </button>
+    <button type="button" class="btn btn-primary" ng-click="backAllTravelRequest()" ng-if="markSave">
+        返回
+    </button>
+
+</div>
+<!-- 申请人 -->
+<div class="modal fade" id="applyPeople" name="applyPeopleModal" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Search
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <!-- 此处input用q.yu测试，value="q.yu" -->
+                        <input type="text" value="" class="form-control" id="personSle">
+                        <span> <button ng-click="choosePer()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Display Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- <tr>
+                                    <td><input type="checkbox" value="bitsg\q.yu -于齐" name="applyPeopleSlec"></td>
+                                    <td>bitsg\q.yu -于齐</td>
+                                </tr> -->
+                                <tr ng-if="personListByPage&&personListByPage.length>0"
+                                    ng-repeat="(idx,person) in personListByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{person.name}}" name="applyPeopleSlec"></td>
+                                    <td>{{person.name}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectApplyPeople()">
+                    OK
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 项目号 -->
+<div class="modal fade" id="projectNum" name="projectNum" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Search
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="proNum">
+                        <span> <button ng-click="chooseProjectNum()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Display Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="projectNumByPage&&projectNumByPage.length>0"
+                                    ng-repeat="(idx,proNum) in projectNumByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{proNum.projectNum}}" name="projectNumSlec"></td>
+                                    <td>{{proNum.projectNum}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChangedProNum()"
+                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;"
+                                last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectProjectNum()">
+                    OK
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 成本中心 -->
+<div class="modal fade" id="costCenter" name="costCenter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Search
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <input type="text" value="" class="form-control" id="costCenterNum" ng-model="costCenterName">
+                        <span> <button ng-click="chooseCostCenter()" class="btn btn-primary"
+                                style="margin-left: 93%;margin-top: -11%;">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Display Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="costCenterNum_ByPage&&costCenterNum_ByPage.length>0"
+                                    ng-repeat="(idx,costCenNum) in costCenterNum_ByPage | orderBy:sortType:sortReverse">
+                                    <td><input type="checkbox" value="{{costCenNum.costcenter}}"
+                                            name="costCenterNum_Slec"></td>
+                                    <td>{{costCenNum.costcenter}}</td>
+                            </tbody>
+                        </table>
+                        <div class="margin-top text-center">
+                            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems"
+                                ng-model="currentPage" items-per-page="itemPerPage"
+                                ng-change="pageChangedcostCenterNum()" class="pagination-sm" previous-text="&lsaquo;"
+                                next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="selectcostCenterNum_()">
+                    OK
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- Detail Title -->
+<div class="modal fade" id="detailtitle" name="detailtitleModal" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 1000px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    差旅申请明细
+                </h4>
+            </div>
+            <form id="emptyForm">
+                <input type="text" ng-model="idStr" id="idstr" style="display: none;">
+                <input type="text" ng-model="tableId" id="tableId" style="display: none;">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">出发地<span style="color: red">*</span></label>
+                        <div class="col-sm-5"><input type="text" class="form-control" ng-model="cfd"></div>
+                        <label class="col-sm-1 control-label">目的地<span style="color: red">*</span></label>
+                        <div class="col-sm-5"><input type="text" class="form-control" ng-model="mdd"></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">起始日期<span style="color: red">*</span></label>
+                        <div class="col-sm-5"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                                ng-model="beginDateDetail" is-open="openedBeginDetail" ng-readonly="true"
+                                ng-required="true" close-text="关闭" ng-click="openedBeginDetail=true" clear-text="清除"
+                                current-text='本日' />
+                        </div>
+                        <label class="col-sm-1 control-label">截止日期<span style="color: red">*</span></label>
+                        <div class="col-sm-5"><input type="text" class="form-control" datepicker-popup="yyyy-MM-dd"
+                                placeholder="请选择日期" datepicker-options="{minMode: 'day'}" datepicker-mode="'day'"
+                                ng-model="endDateDetail" is-open="openedEndDetail" ng-readonly="true" ng-required="true"
+                                close-text="关闭" ng-click="openedEndDetail=true" clear-text="清除" current-text='本日' />
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">住宿</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="zs"
+                                id="zs" onBlur="sumDetailTitle()"></div>
+                        <label class="col-sm-1 control-label">出差餐补</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="cccb"
+                                id="cccb" onBlur="sumDetailTitle()"></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">机场往返</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="jcwf"
+                                id="jcwf" onBlur="sumDetailTitle()"></div>
+                        <label class="col-sm-1 control-label">飞机票</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="fjp"
+                                id="fjp" onBlur="sumDetailTitle()"></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">出差地市内交通</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="ccdsnjt"
+                                id="ccdsnjt" onBlur="sumDetailTitle()"></div>
+                        <label class="col-sm-1 control-label">火车/汽车/轮船</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="hcqclc"
+                                id="hcqclc" onBlur="sumDetailTitle()"></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">其他</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="qt"
+                                id="qt" onBlur="sumDetailTitle()"></div>
+                        <label class="col-sm-1 control-label">费用小计</label>
+                        <div class="col-sm-5"><input type="text" class="form-control" maxlength="11" ng-model="fyxj"
+                                id="fyxj" readonly></div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-1 control-label">备注<span style="color: red">*</span></label>
+                        <div class="col-sm-11"><textarea class="form-control" ng-model="bz"></textarea></div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="saveDetailTitle()"
+                    ng-disabled="!cfd||!mdd||!beginDateDetail||!endDateDetail||!bz">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>

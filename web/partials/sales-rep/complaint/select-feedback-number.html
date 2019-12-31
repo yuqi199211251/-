@@ -1,0 +1,97 @@
+  <div class="modal-header dialog-header-confirm">
+    <button type="button" class="close" ng-click="$dismiss()">
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+    <div class="modal-title">
+      <span class="fa fa-university"></span>
+      <span>选择反馈信息</span>
+    </div>
+  </div>
+  
+  <div class="margin-top-3">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+              <th class="text-center" style="display: none">
+                  <a class="cursor-pointer" ng-click="sortType = 'FkbgFid'; sortReverse = !sortReverse">
+                  反馈单据id
+                  <span ng-show="sortType == 'FkbgFid' && !sortReverse" class="fa fa-caret-down"></span>
+                  <span ng-show="sortType == 'FkbgFid' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+              </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FBillNo'; sortReverse = !sortReverse">
+                投诉编号
+                <span ng-show="sortType == 'FBillNo' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FBillNo' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'hospitalName'; sortReverse = !sortReverse">
+                医院名称
+                <span ng-show="sortType == 'hospitalName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'hospitalName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'agentName'; sortReverse = !sortReverse">
+                经销商
+                <span ng-show="sortType == 'agentName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'agentName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+              <a class="cursor-pointer" ng-click="sortType = 'FeedbackAbstract'; sortReverse = !sortReverse">
+                摘要
+              <span ng-show="sortType == 'FeedbackAbstract' && !sortReverse" class="fa fa-caret-down"></span>
+              <span ng-show="sortType == 'FeedbackAbstract' && sortReverse" class="fa fa-caret-up"></span>
+              </a>
+          </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FNumber'; sortReverse = !sortReverse">
+                序列号
+                <span ng-show="sortType == 'FNumber' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FNumber' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'Fhhzt'; sortReverse = !sortReverse">
+                状态
+                <span ng-show="sortType == 'Fhhzt' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'Fhhzt' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                操作
+            </th>
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="selectFeedbackNumberListByPage&&selectFeedbackNumberListByPage.length>0" 
+                ng-repeat="(idx,selectFeedbackNumber) in selectFeedbackNumberListByPage | orderBy:sortType:sortReverse">
+            <td style="display: none">{{selectFeedbackNumber.FkbgFid}}</td>
+            <td width="8%" class="text-center">{{selectFeedbackNumber.FBillNo}}</td>
+            <td width="24%" class="text-center">{{selectFeedbackNumber.hospitalName}}</td>
+            <td width="19%" class="text-center">{{selectFeedbackNumber.agentName}}</td>
+            <td width="18%" class="text-center">{{selectFeedbackNumber.FeedbackAbstract}}</td>
+            <td width="8%" class="text-center">{{selectFeedbackNumber.FNumber}}</td>
+            <td width="15%" class="text-center">{{selectFeedbackNumber.Fhhzt}}</td>
+            <td width="8%" class="text-center" >
+                    <button type="button" class="btn btn-info btn-xs" ng-click="selectFeedbackNumberFinal(selectFeedbackNumber)">
+                            确定引入
+                    </button>
+            </td>
+        </tr>
+        <tr ng-if="!selectFeedbackNumberList||selectFeedbackNumberList.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+  </div>
+  
+  
+  <pre ng-show="debug">{{selectFeedbackNumberListByPage|json}}</pre >
+  

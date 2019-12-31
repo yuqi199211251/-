@@ -1,0 +1,138 @@
+<h2 class="text-center" style="padding-top:20px">月度销量差异版本对比表</h2>
+<div class="margin-top-5" style="padding:20px 0 10px 0">
+    <div class="margin-top-5" style="text-align:center">
+        <form role="form" name="toNoForm" class="form-inline">
+         <div class="form-group" >
+            <label class="control-label no-padding-right field-required" for="role"> 产品类别:</label>
+                <select class="chosen-select form-control"
+                    ng-model="msdcSearch.ProductTypeName"
+                    name="ProductTypeName"
+                    ng-options="item.FName as item.FName for item in productTypeList"
+                    >
+                    <option value="">选择产品类别</option>
+                </select>
+        </div>
+
+         <div class="form-group">
+           <label class="control-label no-padding-right field-required" for="queryDate"> 查看年月:</label> 
+           <input type="text" class="form-control" datepicker-popup="yyyy年MM月" placeholder="请选择月份" 
+                 datepicker-options="{minMode: 'month'}" 
+                 datepicker-mode="'month'"
+               ng-model="temp.queryDate" is-open="opened2" ng-readonly="true"
+               ng-required="true" close-text="关闭"  ng-click="opened2=true" clear-text="清除" current-text='本日'/>
+         </div>
+         <button type="submit" class="btn btn-default" ng-click="queryMonthlySalesDifferencesComparisonList()" >查询</button>
+         <button type="button" class="btn btn-default" ng-disabled="!temp.queryDate||!msdcSearch.ProductTypeName"><a href="/jmapi/supply-chain/monthlySale-report/get-monthly-sales-differences-comparison-excel.json?ProductTypeName={{msdcSearch.ProductTypeName}}&queryYear={{year}}&queryMonth={{month}}">导出</a></button>
+       </form>
+     </div>
+</div>  
+<div class="margin-top-20" style="padding:30px 0 10px 0">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'BigAreaName'; sortReverse = !sortReverse">
+                大区
+                <span ng-show="sortType == 'BigAreaName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'BigAreaName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'AreaName'; sortReverse = !sortReverse">
+                小区
+                <span ng-show="sortType == 'AreaName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'AreaName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FEmpName'; sortReverse = !sortReverse">
+                销售代表
+                <span ng-show="sortType == 'FEmpName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FEmpName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCustName'; sortReverse = !sortReverse">
+                分销商简称
+                <span ng-show="sortType == 'FCustName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCustName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FFullCustName'; sortReverse = !sortReverse">
+                分销商名称
+                <span ng-show="sortType == 'FFullCustName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FFullCustName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FHospNum'; sortReverse = !sortReverse">
+                医院编码
+                <span ng-show="sortType == 'FHospNum' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FHospNum' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FHospName'; sortReverse = !sortReverse">
+                医院名称
+                <span ng-show="sortType == 'FHospName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FHospName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FSaleQty'; sortReverse = !sortReverse">
+                报表数
+                <span ng-show="sortType == 'FSaleQty' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FSaleQty' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FInvoiceQty'; sortReverse = !sortReverse">
+                发票数
+                <span ng-show="sortType == 'FInvoiceQty' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FInvoiceQty' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FDiffQty'; sortReverse = !sortReverse">
+                差值
+                <span ng-show="sortType == 'FDiffQty' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FDiffQty' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FvNewNote'; sortReverse = !sortReverse">
+                备注
+                <span ng-show="sortType == 'FvNewNote' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FvNewNote' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="monthlySalesDifferencesComparisonListByPage&&monthlySalesDifferencesComparisonListByPage.length>0" 
+                ng-repeat="(idx,monthlySalesDifferencesComparisonList) in monthlySalesDifferencesComparisonListByPage | orderBy:sortType:sortReverse">
+            <td width="5%" class="text-center">{{monthlySalesDifferencesComparisonList.BigAreaName}}</td>
+            <td width="5%" class="text-center">{{monthlySalesDifferencesComparisonList.AreaName}}</td>
+            <td width="5%" class="text-center">{{monthlySalesDifferencesComparisonList.FEmpName}}</td>
+            <td width="11%" class="text-center">{{monthlySalesDifferencesComparisonList.FCustName}}</td>
+            <td width="11%" class="text-center">{{monthlySalesDifferencesComparisonList.FFullCustName}}</td>
+            <td width="10%" class="text-center">{{monthlySalesDifferencesComparisonList.FHospNum}}</td>
+            <td width="17%" class="text-center">{{monthlySalesDifferencesComparisonList.FHospName}}</td>
+            <td width="7%" class="text-center">{{monthlySalesDifferencesComparisonList.FSaleQty}}</td>
+            <td width="7%" class="text-center">{{monthlySalesDifferencesComparisonList.FInvoiceQty}}</td>
+            <td width="7%" class="text-center">{{monthlySalesDifferencesComparisonList.FDiffQty}}</td>
+            <td width="15%" class="text-center">{{monthlySalesDifferencesComparisonList.FvNewNote}}</td>
+        </tr>
+        <tr ng-if="!monthlySalesDifferencesComparisonList||monthlySalesDifferencesComparisonList.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+</div>
+
+    <pre ng-show="debug">monthlySalesDifferencesComparisonListByPage:{{monthlySalesDifferencesComparisonListByPage | json}}</pre>	

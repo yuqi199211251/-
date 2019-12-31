@@ -1,0 +1,188 @@
+
+	<h2 class="text-center" style="padding-top:20px">月度销量表查询</h2>
+    <div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="margin-top-5" style="text-align:center">
+            <form role="form" name="toNoForm" class="form-inline">
+            <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="startDate"> 产品类别:</label> 
+                <select class="form-control" ng-model="productType" ng-options="item.FName as item.FName for item in productTypeList">
+                        <option value="">选择产品类别</option>
+                </select>
+            </div>
+            &nbsp; &nbsp; &nbsp;
+            <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="startDate"> 年月:</label> 
+                    <input type="text" class="form-control" datepicker-popup="yyyy年MM月" placeholder="请选择月份" 
+                      datepicker-options="{minMode: 'month'}" 
+                      datepicker-mode="'month'"
+                    ng-model="yearSel" is-open="opened" ng-readonly="true"
+                    ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本日'/>
+            </div>
+            <button type="submit" class="btn btn-default" ng-click="submitForm()" >查询</button>
+        </form>
+        </div>
+        </div>  
+    <div style="float: right;font-size: 3px;color: black;">  
+        <div class="form-group" >
+                <label class="control-label no-padding-right field-required" for="startDate"> 客服审核人:</label> 
+                <input type="text" ng-model="tFname" disabled/>
+                <label class="control-label no-padding-right field-required" for="startDate"> 审核时间:</label> 
+                <input type="text" ng-model="FCheckTime1" disabled/>
+        </div>
+        <div class="form-group" >
+            <label class="control-label no-padding-right field-required" for="startDate"> 销售审核人:</label> 
+            <input type="text" ng-model="t_Fname" disabled/>
+            <label class="control-label no-padding-right field-required" for="startDate"> 审核时间:</label> 
+            <input type="text" ng-model="FCheckTime2" disabled/>
+        </div>
+    </div>  
+<div class="padding-x-20" ng-init="temp.showTab='SFE_implant'" >
+
+    <div class="margin-top-20" style="padding:30px 0 10px 0">
+        <table class="table padding-top table-striped border">
+            <thead> 
+                <tr>
+                    <th class="text-center">
+                        <a class="cursor-pointer"  >
+                        总监
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        大区
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        大区经理
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        小区
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        小区经理
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        销售代表
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        省
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        市
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        分销商编码
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        分销商简称
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        分销商名称
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        医院辅助编码
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        医院编码
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        医院名称
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        医院等级
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        销量
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        备注
+                        </a>
+                    </th>
+                    <th class="text-center">
+                        <a class="cursor-pointer"    >
+                        开票价格
+                        </a>
+                    </th>
+                
+                </tr>
+            </thead> 
+            <tbody>          
+                <tr ng-if="reportByPage.SFE_ImplantData&&reportByPage.SFE_ImplantData.length>0" 
+                    ng-repeat="(idx,monthSaleList) in reportByPage.SFE_ImplantData">
+                <td  class="text-center">{{monthSaleList.FDirectorName}}</td>
+                <td  class="text-center">{{monthSaleList.FBigAreaName}}</td>
+                <td  class="text-center">{{monthSaleList.FBigAreaMgrName}}</td>
+                <td  class="text-center">{{monthSaleList.FAreaName}}</td>
+                <td  class="text-center">{{monthSaleList.FMgrName}}</td>
+                <td  class="text-center">{{monthSaleList.FSalerName}}</td>
+                <td  class="text-center">{{monthSaleList.FProvince}}</td>
+                <td  class="text-center">{{monthSaleList.FCity}}</td>   
+                <td  class="text-center">{{monthSaleList.FCustNum}}</td>   
+                <td  class="text-center">{{monthSaleList.FCustNameShort}}</td>   
+                <td  class="text-center">{{monthSaleList.FCustNameOk}}</td>   
+                <td  class="text-center">{{monthSaleList.FHospNum}}</td>   
+                <td  class="text-center">{{monthSaleList.FHospNumOk}}</td>   
+                <td  class="text-center">{{monthSaleList.FHospNameOk}}</td>   
+                <td  class="text-center">{{monthSaleList.FHospLevelName}}</td>   
+                <td  class="text-center">{{monthSaleList.FQty}}</td>   
+                <td  class="text-center">{{monthSaleList.FNote}}</td>   
+                <td  class="text-center">{{monthSaleList.price}}</td>   
+
+            </tr>
+            <tr ng-if="!reportByPage.SFE_ImplantData||reportByPage.SFE_ImplantData.length==0">
+                <td colspan="4" class='empty-message'>没有数据.</td>
+            </tr>
+            </tbody> 
+        </table>
+    </div>
+</div>
+
+<div class="margin-top text-center">
+    <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+</div>
+<div class="margin-top text-center">
+    <a ng-if="!reportByPage.SFE_ImplantData||reportByPage.SFE_ImplantData.length>0" class="btn btn-success" href="/jmapi/supply-chain/monthlySale-report/get-month-sale-list-for-excel.json?date={{yearSel}}&productType={{productType}}">
+        <span class="glyphicon glyphicon-download-alt"></span>      
+        附件下载
+    </a>
+    <!--
+    <button type="button" class="btn btn-success" ng-click="copyBusinessPrice()">
+        <span class="fa fa-plus-circle fa-lg"></span>
+        复制数据
+    </button>
+    -->
+</div>
+</div>
+<!-- <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
+<div class="clearboth"></div>
+<pre ng-show="debug">report:{{report | json}}</pre>	
+<pre ng-show="debug">temp:{{temp | json}}</pre>

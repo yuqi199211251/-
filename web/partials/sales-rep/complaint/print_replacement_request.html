@@ -1,0 +1,185 @@
+<div id="myDiv">
+        <img ng-if="implantFeedback.fdzzsUrl" id="imgStyle" width="100px" height="100px" style="margin-top: 5%;margin-left:6%;position:absolute;z-index:1;" src="data:image/gif;base64,{{implantFeedback.fdzzsUrl}}" width="150mm" height="150mm">
+        <div class="margin-top-5" style="text-align:center;z-index:0;">
+          <table class="table table-condensed">
+            <thead>
+                    <tr>
+                        <th  style="text-align: left;padding-top:20px;width: 20%"><label>JWMS</label></th>
+                        <th  style="text-align: center;width: 60%"><label class="text-center" style="font-size: 18px">山东吉威医疗制品有限公司</label></th>
+                        <th  style="text-align: right;padding-top:20px;width: 20%"><label>FSOP-051-04-B</label></th>
+                    </tr>
+            </thead>
+        </table>
+        <table class="table table-condensed" style="margin-bottom: 2px">
+            <thead>
+                    <tr>
+                        <th  style="text-align: left;padding-top:20px;width: 20%;border: 0px"><label>以下由分销商填写(请加盖公章)：</label></th>
+                        <th  style="text-align: center;width: 60%;border: 0px"><label class="text-center" style="font-size: 16px">换货申请表</label></th>
+                        <th  style="text-align: right;padding-top:20px;width: 20%;border: 0px"><label>投诉编号：</label><label>{{implantFeedback.feedbackNumber}}</label></th>
+                    </tr>
+            </thead>
+        </table>
+        <table class="table table-bordered table-condensed">
+            <tr class="non-border" style="border: 0px">
+                <td class="non-border weightFont" colspan="4" style="text-align: left;border: 0px">分销商信息</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">公司名称：</label><label class="normalFont">{{implantFeedback.distributorName}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">收货地址及邮编：</label><label class="normalFont">{{implantFeedback.FShdd}} &nbsp;&nbsp;   {{implantFeedback.FYb}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">收货人、邮箱及电话：</label><label class="normalFont">{{implantFeedback.FShr}} &nbsp;&nbsp;  {{implantFeedback.email}}  &nbsp;&nbsp; {{implantFeedback.FPhone}}</label></td>
+            </tr>
+            <tr style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">所属平台：</label><label class="normalFont">{{implantFeedback.FFXSPlaName}}</label></td>
+            </tr>
+
+            <tr class="non-border">
+                <td colspan="4" class="non-border weightFont" style="text-align: left;width: 50%;border-bottom: hidden">院方信息</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">医院名称：</label><label class="normalFont">{{implantFeedback.hospitalName}}</label></td>
+            </tr>
+            <tr style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">手术医生：</label><label class="normalFont">{{implantFeedback.surgeon}}</label></td>
+            </tr>
+
+            <tr class="non-border">
+                <td colspan="4" class="non-border weightFont" style="text-align: left;width: 50%;border-bottom: hidden">退回产品信息</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">产品名称：</label><label class="normalFont">{{implantFeedback.productName}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">产品规格：</label><label class="normalFont">{{implantFeedback.productModel}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">生产批次：</label><label class="normalFont">{{implantFeedback.batchNumber}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">有效期至：</label><label class="normalFont">{{implantFeedback.expiryDate}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">产品序号：</label><label class="normalFont">{{implantFeedback.productNumber}}</label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                <td class="non-border" colspan="4" style="text-align: left;border: 0px"><label class="normalFont">退回原因：</label><input type="checkbox" ng-model="implantFeedback.embeddedSecurity">植入保障（单纯未通过病变，资料齐全）</td>
+            </tr>
+            <tr style="border: 0px">
+                    <td class="non-border" colspan="4" style="text-align: left;border: 0px"><label class="normalFont">质量调查：</label><input type="checkbox" ng-model="implantFeedback.stentsFallOff">支架脱落<input type="checkbox" ng-model="implantFeedback.cardGodet">卡导丝<input type="checkbox" ng-model="implantFeedback.unpackFindProblem">拆包发现问题
+                        <input type="checkbox" ng-model="implantFeedback.otherQuality">其他：<input type='text'  name='otherQualityProblems'
+                        ng-class="{'submitted':submitted}"
+                        ng-model="implantFeedback.otherQualityProblems" style="border-left: none;border-right:none;border-top:none;width:20%">
+                    </td>
+                </tr>
+            <tr style="border: 0px">
+                <td colspan="4" style="text-align: left;border: 0px"><label class="normalFont">备注：</label><input type='text'  name='otherQualityProblems'
+                    ng-class="{'submitted':submitted}"
+                     style="border-left: none;border-right:none;border-top:none;width:20%"></td>
+            </tr>
+    </table>
+
+    
+
+
+    <table class="table table-condensed" style="margin-bottom: 2px">
+        <thead>
+                <tr>
+                    <th  style="text-align: left;padding-top:20px;border: 0px"><label>以下由JW客服部填写：</label></th>
+                </tr>
+        </thead>
+    </table>
+    <table class="table table-bordered table-condensed">
+        <tr class="non-border" style="border: 0px">
+            <td class="non-border weightFont" colspan="4" style="text-align: left;border: 0px">复核结果</td>
+        </tr>
+        <tr class="non-border" style="border: 0px">
+            <td class="non-border" colspan="4" style="text-align: left;border: 0px"><label class="normalFont">退回原因：</label><input type="checkbox" >与事实相符<input type="checkbox" >不相符，说明 
+                <input type='text'  name='otherQualityProblems'
+                                ng-class="{'submitted':submitted}"
+                                 style="border-left: none;border-right:none;border-top:none;width:20%"></td>
+        </tr>
+        <tr class="non-border" style="border: 0px">
+            <td class="non-border" colspan="4" style="text-align: left;border: 0px"><label class="normalFont">资料收集：</label><input type="checkbox" >金属支架<input type="checkbox">球囊导管<input type="checkbox" >光盘，说明 
+                <input type='text'  name='otherQualityProblems'
+                                ng-class="{'submitted':submitted}"
+                                 style="border-left: none;border-right:none;border-top:none;width:20%">医生说明，说明 
+                                <input type='text'  name='otherQualityProblems'
+                                                ng-class="{'submitted':submitted}"
+                                                 style="border-left: none;border-right:none;border-top:none;width:20%"></td>
+        </tr>
+        <tr style="border: 0px">
+            <td class="non-border" colspan="4" style="text-align: left;border: 0px"><label class="normalFont">处理结果：</label><input type="checkbox" >优先进入换货审批<input type="checkbox" >根据产品调查结果审批换货</td>
+        </tr>
+        <tr style="border: 0px">
+            <td colspan="4" style="text-align: left;border: 0px">产品调查结果摘要</td>
+        </tr>
+    </table>
+
+
+
+
+    <table class="table table-condensed" style="margin-bottom: 2px">
+        <thead>
+                <tr>
+                    <th  style="text-align: left;padding-top:20px;border: 0px"><label>以下是JW审批程序：</label></th>
+                </tr>
+        </thead>
+    </table>
+    <table class="table table-bordered table-condensed">
+            <tr class="non-border" style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px">南/北区销售经理意见</td>
+            </tr>
+            <tr style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px"><label style="height: 20px"></label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px">全国销售经理意见</td>
+            </tr>
+            <tr style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px"><label style="height: 20px"></label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px">副总经理意见</td>
+            </tr>
+            <tr style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px"><label style="height: 20px"></label></td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px">处理结果</td>
+            </tr>
+            <tr class="non-border" style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px"><input type="checkbox">已批换货，发货日期(yy/mm/dd)<input type='text'  name='otherQualityProblems'
+                        ng-class="{'submitted':submitted}"
+                         style="border-left: none;border-right:none;border-top:none;width:20%">
+                        <label>运单号</label><input type='text'  name='otherQualityProblems'
+                        ng-class="{'submitted':submitted}"
+                        style="border-left: none;border-right:none;border-top:none;width:20%">
+                        <label>收件人</label><input type='text'  name='otherQualityProblems'
+                        ng-class="{'submitted':submitted}"
+                         style="border-left: none;border-right:none;border-top:none;width:20%">
+                    </td>
+            </tr>
+            <tr style="border: 0px">
+                    <td colspan="4" style="text-align: left;border: 0px"><input type="checkbox">未批换货，原因是：<input type='text'  name='otherQualityProblems'
+                        ng-class="{'submitted':submitted}"
+                        style="border-left: none;border-right:none;border-top:none;width:20%"></td>
+            </tr>
+            
+    </table>
+    <table class="table table-bordered table-condensed" style="border:0px #000 solid!important;margin-top: 5%!important;">
+        <tr style="border:0px #000 solid!important;"><td style="float:right;border:0px #000 solid!important;border-bottom: 1px #000 solid!important;">质量管理体系</td></tr>
+    </table>
+
+
+    <button type="button" class="btn btn-success" id="returnButton"ng-click="print()" >打印</button>
+    <button type="button" class="btn btn-success" id="returnButton"ng-click="return()" >返回</button>
+    
+</div>
+
+
+<pre ng-show="debug">implantFeedback:{{implantFeedback | json}}</pre>	
+</div>
+

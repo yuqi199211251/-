@@ -1,0 +1,102 @@
+
+
+<h2 class="text-center" style="padding-top:20px">反馈报告上传</h2>
+<div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="margin-top-5 container" style="text-align:center">
+
+            <div class="row">
+                <!-- <div class="col-md-6"><input type="text" class='full-width form-control'/></div>
+                <div class="col-md-1"><span class="glyphicon glyphicon-search"></span></div> -->
+                <div class="col-md-11"><input type="text" class='full-width form-control' readonly="readonly" ng-model="feedbackMessage" style="height:45px!important;"/></div>
+                <span class="input-group-btn col-md-1" style="margin-left:-30px">
+                        <button type="button" class="btn btn-default btn-lg" ng-click="selectFeedbackNumber()">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                </span>
+            </div>
+            
+            <div class="row">
+
+                <!-- <div class="col-md-3">
+                    <h3>选择文件</h3>
+                    <input type="file" nv-file-select="" uploader="uploader" multiple  /><br/>
+                </div> -->
+
+                <div class="col-md-12" style="margin-bottom: 40px">
+
+                    <h3>上传信息</h3>
+                    <p>文件个数: {{ uploader.queue.length }}</p>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th width="45%" style="text-align:center">文件名称</th>
+                                <th width="15%" style="text-align:center" ng-show="uploader.isHTML5">文件大小</th>
+                                <th width="10%" style="text-align:center" ng-show="uploader.isHTML5">进度</th>
+                                <th width="15%" style="text-align:center">状态</th>
+                                <th width="15%" style="text-align:center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in uploader.queue">
+                                <td><strong>{{ item.file.name }}</strong></td>
+                                <td ng-show="uploader.isHTML5" nowrap>{{ item.file.size/1024/1024|number:2 }} MB</td>
+                                <td ng-show="uploader.isHTML5">
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <!-- <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                    </button> -->
+                                    <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div>
+                        <div>
+                            上传过程:
+                            <div class="progress" style="">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-3" style="position: relative;">
+                            <button type="button" class="btn btn-success btn-s" style="background-color: dodgerblue">
+                                <span class="glyphicon glyphicon-choise"></span> 选择文件
+                            </button>
+                            <input type="file" capture="camera"  style="position:absolute;top:0;left:0;opacity:0;height:20px;width:200px;" nv-file-select="" uploader="uploader" multiple  id="uploadPic"/><br/>
+                        </div>
+                        <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll(uploader.queue)" ng-disabled="!uploader.getNotUploadedItems().length||!feedbackMessage">
+                            <span class="glyphicon glyphicon-upload"></span> 全部上传
+                        </button>
+                        <!-- <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                            <span class="glyphicon glyphicon-ban-circle"></span> 删除所有
+                        </button> -->
+                        <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length||!uploader.getNotUploadedItems().length||!feedbackMessage">
+                            <span class="glyphicon glyphicon-trash"></span> 移除所有
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+</div>  
+
+    <!-- <pre ng-show="debug">complaintRequest:{{complaintRequest | json}}</pre>	 -->

@@ -1,0 +1,231 @@
+
+	<h2 class="text-center" style="padding-top:20px">销量表查询</h2>
+    <div class="margin-top-5" style="padding:20px 0 10px 0">
+        <div class="margin-top-5" style="text-align:center">
+            <form role="form" name="toNoForm" class="form-inline">
+            <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="startDate"> 产品类别:</label> 
+                <select class="form-control" ng-model="productType" ng-options="item.FName as item.FName for item in productTypeList">
+                        <option value="">选择产品类别</option>
+                </select>
+            </div>
+            &nbsp; &nbsp; &nbsp;
+            <div class="form-group">
+                <label class="control-label no-padding-right field-required" for="startDate"> 查看年度:</label> 
+                    <input type="text" class="form-control" datepicker-popup="yyyy年" placeholder="请选择年份" 
+                      datepicker-options="{minMode: 'year'}" 
+                      datepicker-mode="'year'"
+                    ng-model="yearSel" is-open="opened" ng-readonly="true"
+                    ng-required="true" close-text="关闭"  ng-click="opened=true" clear-text="清除" current-text='本日'/>
+            </div>
+            
+            <button type="submit" class="btn btn-default" ng-click="submitForm()" >查询</button>
+        </form>
+        </div>
+        </div>  
+ 
+<div class="padding-x-20" ng-init="temp.showTab='SFE_implant'" >
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs margin-bottom" role="tablist">
+  <li role="presentation" ng-class="{'active':temp.showTab==='SFE_implant'}">
+      <a class="cursor-pointer" ng-click="temp.showTab='SFE_implant'">SFE植入数据</a>
+  </li>
+  <!--
+  <li role="presentation" ng-class="{'active':temp.showTab==='salesPromotion'}">
+      <a class="cursor-pointer" ng-click="temp.showTab='salesPromotion'">销售促销数据</a>
+  </li>
+  <li role="presentation" ng-class="{'active':temp.showTab==='businessPrice'}">
+      <a class="cursor-pointer" ng-click="temp.showTab='businessPrice'">商务价格</a>
+  </li>
+  -->
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane"  ng-class="{'active':temp.showTab==='SFE_implant'}" id="SFE_implant">
+        <table class="table padding-top table-striped">
+            <thead> 
+                <tr> 
+                    <th class="text-center">总监</th> 
+                    <th class="text-center">大区</th> 
+                    <th class="text-center">大区<br/>经理</th> 
+                    <th class="text-center">小区</th> 
+                    <th class="text-center">小区<br/>经理</th> 
+                    <th class="text-center">代表</th> 
+                    <th class="text-center">省</th> 
+                    <th class="text-center">市</th> 
+                    <th class="text-center">分销商<br/>编码</th> 
+                    <th class="text-center">分销商<br/>简称</th> 
+                    <th class="text-center">分销商<br/>名称</th> 
+                    <th class="text-center">医院<br/>辅助<br/>编码</th> 
+                    <th class="text-center">医院<br/>编码</th> 
+                    <th class="text-center">医院<br/>名称</th> 
+                    <th class="text-center">医院<br/>等级</th> 
+                    <th class="text-center">一月</th> 
+                    <th class="text-center">二月</th> 
+                    <th class="text-center">三月</th> 
+                    <th class="text-center">四月</th> 
+                    <th class="text-center">五月</th> 
+                    <th class="text-center">六月</th> 
+                    <th class="text-center">七月</th> 
+                    <th class="text-center">八月</th> 
+                    <th class="text-center">九月</th> 
+                    <th class="text-center">十月</th> 
+                    <th class="text-center">十一月</th> 
+                    <th class="text-center">十二月</th> 
+                    <th class="text-center">合计</th> 
+                </tr> 
+            </thead> 
+            <tbody> 
+                <tr ng-if="reportByPage.SFE_ImplantData&&reportByPage.SFE_ImplantData.length>0" 
+                        ng-repeat="(idx,item) in Total">
+                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td></td><td></td><td></td><td></td><td></td>
+                    <td>{{::item.SUMF1}}</td><td>{{::item.SUMF2}}</td><td>{{::item.SUMF3}}</td>
+                    <td>{{::item.SUMF4}}</td><td>{{::item.SUMF5}}</td><td>{{::item.SUMF6}}</td>
+                    <td>{{::item.SUMF7}}</td><td>{{::item.SUMF8}}</td><td>{{::item.SUMF9}}</td>
+                    <td>{{::item.SUMF10}}</td><td>{{::item.SUMF11}}</td><td>{{::item.SUMF12}}</td>
+                    <td>{{::item.SUMFSumQty}}</td>
+                </tr>
+                <tr ng-if="reportByPage.SFE_ImplantData&&reportByPage.SFE_ImplantData.length>0" 
+                     ng-repeat="(idx,item) in reportByPage.SFE_ImplantData"> 
+                    <td class="text-center">{{::item.FDirector}}</td> 
+                    <td class="text-center">{{::item.FBigAreaName}}</td> 
+                    <td class="text-center">{{::item.FBigAreaMgr}}</td> 
+                    <td class="text-center">{{::item.FAreaName}}</td> 
+                    <td class="text-center">{{::item.FMgrName}}</td> 
+                    <td class="text-center">{{::item.FSalerName}}</td> 
+                    <td class="text-center">{{::item.FProvince}}</td> 
+                    <td class="text-center">{{::item.FCity}}</td> 
+                    <td class="text-center">{{::item.FCustNum}}</td> 
+                    <td class="text-center">{{::item.FCustNameShort}}</td> 
+                    <td class="text-center">{{::item.FCustNameOk}}</td> 
+                    <td class="text-center">{{::item.FHospNum}}</td> 
+                    <td class="text-center">{{::item.FHospNumOk}}</td> 
+                    <td class="text-center">{{::item.FHospNameOk}}</td> 
+                    <td class="text-center">{{::item.FHospLevelName}}</td> 
+                    <td class="text-center">{{::item.F1}}</td> 
+                    <td class="text-center">{{::item.F2}}</td> 
+                    <td class="text-center">{{::item.F3}}</td> 
+                    <td class="text-center">{{::item.F4}}</td> 
+                    <td class="text-center">{{::item.F5}}</td> 
+                    <td class="text-center">{{::item.F6}}</td> 
+                    <td class="text-center">{{::item.F7}}</td> 
+                    <td class="text-center">{{::item.F8}}</td> 
+                    <td class="text-center">{{::item.F9}}</td> 
+                    <td class="text-center">{{::item.F10}}</td> 
+                    <td class="text-center">{{::item.F11}}</td> 
+                    <td class="text-center">{{::item.F12}}</td> 
+                    <td class="text-center">{{::item.FSumQty}}</td> 
+                </tr>
+                <tr ng-if="!reportByPage.SFE_ImplantData||reportByPage.SFE_ImplantData.length==0">
+                    <td colspan="4" class='empty-message'>没有数据.</td>
+                </tr>
+                
+            </tbody> 
+        </table>
+      </div>
+      
+      <!-- salesPromoteion tab -->
+      <div role="tabpanel" class="tab-pane" ng-class="{'active':temp.showTab==='salesPromotion'}" id="salesPromotion">
+              <table class="table padding-top table-striped">
+                      <thead> 
+                          <tr> 
+                              <th class="text-center">大区</th> 
+                              <th class="text-center">经销商</th> 
+                               <th class="text-center">医院<br/>编码</th> 
+                              <th class="text-center">医院<br/>名称</th> 
+                              <th class="text-center">促销金额</th> 
+                              <th class="text-center">促销期限</th> 
+                              <th class="text-center">样品补助</th> 
+                              <th class="text-center">样品补助期限</th> 
+                              <th class="text-center">手术日活动</th> 
+                              <th class="text-center">手术日活动期限</th> 
+                          </tr> 
+                      </thead> 
+                      <tbody> 
+                          <tr ng-repeat="(idx,item) in report.salesPromotionData"> 
+                              <td class="text-center">{{::item.region}}</td> 
+                              <td class="text-center">{{::item.distributor}}</td> 
+                              <td class="text-center">{{::item.hospitalCode}}</td> 
+                              <td class="text-center">{{::item.hospitalName}}</td> 
+                              <td class="text-center">{{::item.promotionAmount}}</td> 
+                              <td class="text-center">{{::item.promotionDuration}}</td> 
+                              <td class="text-center">{{::item.sampleSubsidy}}</td> 
+                              <td class="text-center">{{::item.sampleSubsidyDuration}}</td> 
+                              <td class="text-center">{{::item.surgicalDayActivity}}</td> 
+                              <td class="text-center">{{::item.surgicalDayActivityDuration}}</td> 
+                          </tr>
+                          
+                      </tbody> 
+                  </table>
+</div>
+      <!-- businessPrice tab -->
+      <div role="tabpanel" class="tab-pane" ng-class="{'active':temp.showTab==='businessPrice'}" id="businessPrice">
+              <div role="tabpanel" class="tab-pane" ng-class="{'active':temp.showTab==='salesPromotion'}" id="salesPromotion">
+                      <table class="table padding-top table-striped">
+                              <thead> 
+                                  <tr> 
+                                      <th class="text-center">序号</th> 
+                                      <th class="text-center">商务经理</th> 
+                                      <th class="text-center">地区</th> 
+                                       <th class="text-center">公司名称</th> 
+                                      <th class="text-center">备注</th> 
+                                      <th class="text-center">关联关系</th> 
+                                      <th class="text-center">状态</th> 
+                                      <th class="text-center">代理商<br/>金额指标</th> 
+                                      <th class="text-center">采购单价</th> 
+                                      <th class="text-center">返利折扣</th> 
+                                      <th class="text-center">折扣价</th> 
+                                      <th class="text-center">招标价补<br/>(植入）</th> 
+                                      <th class="text-center">实价</th> 
+                                      <th class="text-center">有无新开发</th> 
+                                      <th class="text-center">执行时间</th> 
+                                  </tr> 
+                              </thead> 
+                              <tbody> 
+                                  <tr ng-repeat="(idx,item) in report.businessPrice"> 
+                                      <td class="text-center">{{::idx+1}}</td> 
+                                      <td class="text-center">{{::item.businessMgr}}</td> 
+                                      <td class="text-center">{{::item.region}}</td> 
+                                      <td class="text-center">{{::item.companyName}}</td> 
+                                      <td class="text-center">{{::item.remark}}</td> 
+                                      <td class="text-center">{{::item.relation}}</td> 
+                                      <td class="text-center">{{::item.status}}</td> 
+                                      <td class="text-center">{{::item.agencyAmountIndicator}}</td> 
+                                      <td class="text-center">{{::item.purchasePrice|number}}</td> 
+                                      <td class="text-center">{{::item.rebateDiscount|percentage}}</td> 
+                                      <td class="text-center">{{::item.discountPrice|number}}</td> 
+                                      <td class="text-center">{{::item.tenderPriceDeduct|number}}</td> 
+                                      <td class="text-center">{{::item.netPrice|number}}</td> 
+                                      <td class="text-center">{{::item.ifNewDevelopment}}</td> 
+                                      <td class="text-center">{{::item.durationOfImplement}}</td> 
+                                  </tr>
+                                  
+                              </tbody> 
+                          </table>
+</div>
+
+</div>
+</div>
+<div class="margin-top text-center">
+    <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+</div>
+<div class="margin-top text-center">
+    <a ng-if="!reportByPage.SFE_ImplantData||reportByPage.SFE_ImplantData.length>0" class="btn btn-success" href="/jmapi/supply-chain/monthlySale-report/get-year-sale-list-for-excel.json?date={{yearSel}}&productType={{productType}}">
+        <span class="glyphicon glyphicon-download-alt"></span>      
+        附件下载
+    </a>
+    <!--
+    <button type="button" class="btn btn-success" ng-click="copyBusinessPrice()">
+        <span class="fa fa-plus-circle fa-lg"></span>
+        复制数据
+    </button>
+    -->
+</div>
+</div>
+<!-- <pagination boundary-links="true" total-items="totalItems" ng-model="currentPage" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination> -->
+<div class="clearboth"></div>
+<pre ng-show="debug">report:{{report | json}}</pre>	
+<pre ng-show="debug">temp:{{temp | json}}</pre>	

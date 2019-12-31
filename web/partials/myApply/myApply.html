@@ -1,0 +1,118 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">我的申请</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row" style="float: right;">
+                    <div class="col-md-3">
+                        <a href="#/travelRequest"><img src="./picture/jwmsTRE.png"></a>
+                    </div>
+                    <div class="col-md-3">
+                        <a href="#/travelExpense"><img src="./picture/jwmsTEX.png"></a>
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./picture/jwmsBRE.png">
+                    </div>
+                    <div class="col-md-3">
+                        <img src="./picture/jwmsBEX.png">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">我的申请列表<span style="font-size: 10px;">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <div style="float: right;;margin-left: 1%;margin-top: -0.6%;">
+                        <button class="btn btn-success btn-3d" ng-click="selectMyApplyList()"><i
+                                class="fa fa-search"></i> 查询</button>
+                    </div>
+
+                    <div style="float: right;margin-top: -0.6%;">
+                        <input type="text" class="form-control" style="margin-left: 5%;"
+                            id="selectInput">&nbsp;&nbsp;&nbsp;&nbsp;
+                    </div>
+                    <div style="float: right;margin-top: -0.6%;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;" id="selectCond">
+                            <option value="all">全部</option>
+                            <option value="folio">申请号</option>
+                            <option value="description">备注</option>
+                            <option value="creator">申请人</option>
+                            <option value="processtypecode">类型</option>
+                            <option value="all">状态</option>
+                        </select>
+                    </div>
+                    <div style="float: right;margin-top: -0.6%;">
+                        <p style="padding: 10px 9px;">快速查询:</p>
+                    </div>
+                    <div style="float: right;margin-top: -0.6%;">
+                        <select class="form-control input-lg" style="height: 34px;padding:0;">
+                            <option value="">默认</option>
+                        </select>
+                    </div>
+                    <div style="float: right;margin-top: -0.6%;">
+                        <p style="padding: 10px 9px;">筛选器:</p>
+                    </div>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <!-- <th></th> -->
+                            <th>申请号</th>
+                            <th>备注</th>
+                            <th>申请人</th>
+                            <th>创建日期</th>
+                            <th>批准日期</th>
+                            <th>完成日期</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="!myApplyListByPage||myApplyListByPage.length==0">
+                            <!-- <td></td> -->
+                            <td colspan="12">暂无数据</td>
+                        </tr>
+                        <tr ng-if="myApplyListByPage&&myApplyListByPage.length>0&&myApplyListByPage!=undefined"
+                            ng-repeat="(idx,myApplyL) in myApplyListByPage | orderBy:sortType:sortReverse">
+                            <!-- <td style="display: none;"><input type="checkbox" id="{{idx}}" value="{{idx}}"
+                                    name="detailCheckBox"></td> -->
+                            <td style="display: none;"><input type="text" value="{{myApplyL.processID}}"></td>
+                            <td>{{myApplyL.folio}}</td>
+                            <td>{{myApplyL.description}}</td>
+                            <td>{{myApplyL.creator}}</td>
+                            <td>{{myApplyL.requestdate}}</td>
+                            <td></td>
+                            <td></td>
+                            <td>{{myApplyL.processtypecode}}</td>
+                            <td>Draft</td>
+                            <td>
+                                <!-- The processID is CN_Process table's id -->
+                                <button class="btn btn-info btn-3d"
+                                    ng-click="selectDetailTitleCheckBox(myApplyL.processID,myApplyL.processtypecode)"><i  class="fa fa-search-plus"></i> 查看</button>
+                                <button class="btn btn-primary btn-3d"
+                                    ng-click="editDetailTitleCheckBox(myApplyL.processID,myApplyL.processtypecode)"><i class="fa fa-file-text-o"></i> 修改</button>
+                                    
+                                <button class="btn btn-danger btn-3d" ng-click="removeDetailTitleCheckBox(myApplyL.processID,myApplyL.processtypecode)"><i class="fa fa-trash-o"></i> 删除</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="margin-top text-center">
+                <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage"
+                    items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+            </div>
+        </div>
+    </div>
+</div>

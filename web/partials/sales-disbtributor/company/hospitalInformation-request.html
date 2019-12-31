@@ -1,0 +1,137 @@
+<h2 class="text-center" style="padding-top:20px">医院信息</h2>
+<div class="margin-top-20" style="padding:30px 0 10px 0">
+    <table class="table padding-top table-striped border">
+        <thead> 
+            <tr>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FUserName'; sortReverse = !sortReverse">
+                医院编号
+                <span ng-show="sortType == 'FUserName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FUserName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FDate'; sortReverse = !sortReverse">
+                公司名称
+                <span ng-show="sortType == 'FDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FBillNO'; sortReverse = !sortReverse">
+               省份
+                <span ng-show="sortType == 'FBillNO' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FBillNO' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FName'; sortReverse = !sortReverse">
+                城市
+                <span ng-show="sortType == 'FName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FSerialNum'; sortReverse = !sortReverse">
+               大区名称
+                <span ng-show="sortType == 'FSerialNum' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FSerialNum' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FHhzt_CurrName'; sortReverse = !sortReverse">
+               业务代表
+                <span ng-show="sortType == 'FHhzt_CurrName' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FHhzt_CurrName' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCheckDate1'; sortReverse = !sortReverse">
+                医院院长
+                <span ng-show="sortType == 'FCheckDate1' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCheckDate1' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                主任副院长
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                导管室主任
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                医院地址
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                邮编
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                医院电话
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                <a class="cursor-pointer" ng-click="sortType = 'FCurCheckDate'; sortReverse = !sortReverse">
+                医院等级
+                <span ng-show="sortType == 'FCurCheckDate' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'FCurCheckDate' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th class="text-center">
+                操作
+            </th>
+            </tr>
+        </thead> 
+        <tbody>          
+            <tr ng-if="hospitalInformationListByPage&&hospitalInformationListByPage.length>0" 
+                ng-repeat="(idx,hospitalInformationRequest) in hospitalInformationListByPage | orderBy:sortType:sortReverse">
+            <td  class="text-center">{{hospitalInformationRequest.FNumber}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.FName}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.FProvince}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.FCity}}</td>
+             <!--原k3就没有给下面两个字段赋值-->
+            <td  class="text-center"></td>
+            <td  class="text-center"></td>
+            <td  class="text-center">{{hospitalInformationRequest.F_106}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.F_107}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.F_108}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.F_109}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.F_110}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.F_111}}</td>
+            <td  class="text-center">{{hospitalInformationRequest.FName_}}</td>
+            <td width="10%" class="text-center" >
+                <button type="button" class="btn btn-info btn-xs" ng-click="addEditHospitalInformationRequest(hospitalInformationRequest)">
+                    修改     
+                </button>
+            </td>
+        </tr>
+        <tr ng-if="!hospitalInformationListByPage||hospitalInformationListByPage.length==0">
+            <td colspan="4" class='empty-message'>没有数据.</td>
+        </tr>
+        </tbody> 
+    </table>
+    <div class="margin-top text-center">
+            <pagination boundary-links="true" max-size="maxSize" total-items="totalItems" ng-model="currentPage" items-per-page="itemPerPage" ng-change="pageChanged()" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+    </div>
+   
+</div>
+
+    <pre ng-show="debug">authUser:{{authUser|json}}</pre >
+    <pre ng-show="debug">hospitalInformationListByPage:{{hospitalInformationListByPage | json}}</pre>	
