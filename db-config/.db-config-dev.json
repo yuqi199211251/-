@@ -1,0 +1,38 @@
+{
+    "sapConnParams":{
+        "username": "yd.zhu",
+        "password": "yadong123",
+        "applicationServer": "172.32.70.67",
+        "instanceNumber": "02",
+        "client": "200"
+    },
+    "bxSqlConnParams":{
+        "user": "bxadmin",
+        "password": "Bx@admin",
+        "server": "172.32.70.131", 
+        "database": "BIOTRACK" 
+    },
+    "szqSqlConnParams":{
+        "user": "sa",
+        "password": "JWms@1234",
+        "server": "172.35.10.66", 
+        "database": "TEST_SZQ" 
+    },
+    "jmSqlConnParams":{
+        "user": "sa",
+        "password": "JWms@234--123",
+        "server": "172.35.10.66", 
+        "database": "JWMSMVC",
+        "port":"46824",
+        "desc":"Dev JWMS MVC SQL Server"
+    },
+    "jwmsK3ConnParams":{
+        "user": "sa",
+        "password": "JWms@234--123",
+        "server": "172.35.10.66", 
+        "port":"46824",
+        "database": "E-Claim"
+    }
+    
+}
+

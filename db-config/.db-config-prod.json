@@ -1,0 +1,16 @@
+{
+    "sapConnParams":{
+        "username": "BX_USER",
+        "password": "@Bx_ud1;",
+        "applicationServer": "172.32.70.60",
+        "instanceNumber": "00",
+        "client": "800"
+    },
+    "bxSqlConnParams":{
+        "user": "bxadmin",
+        "password": "@Bi0sens0rs",
+        "server": "SGDS02", 
+        "database": "BIOTRACK" 
+    }
+}
+
